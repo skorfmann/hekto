@@ -1,0 +1,19 @@
+---
+application_name: TaxBucket
+business_name: Korfmann Ventures UG
+business_address: |-
+  Parkallee 7
+  20144 Hamburg
+domain: taxbucket.app
+support_email: support@taxbucket.app
+default_from_email: Taxbucket <no-reply@taxbucket.app>
+background_job_processor: solid_queue
+email_provider: sendgrid
+personal_accounts: true
+apns: false
+fcm: false
+integrations:
+omniauth_providers:
+payment_processors:
+multitenancy:
+gems:
