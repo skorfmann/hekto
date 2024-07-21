@@ -5,13 +5,14 @@ class Account < ApplicationRecord
   include Domains
   include Transfer
 
-  belongs_to :owner, class_name: "User"
+  belongs_to :owner, class_name: 'User'
   has_many :account_invitations, dependent: :destroy
   has_many :account_users, dependent: :destroy
-  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: "Noticed::Event"
-  has_many :account_notifications, dependent: :destroy, class_name: "Noticed::Event"
+  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
+  has_many :account_notifications, dependent: :destroy, class_name: 'Noticed::Event'
   has_many :users, through: :account_users
   has_many :addresses, as: :addressable, dependent: :destroy
+  has_many :documents, dependent: :destroy
 
   scope :personal, -> { where(personal: true) }
   scope :team, -> { where(personal: false) }

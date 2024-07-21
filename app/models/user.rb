@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_person_name
+  has_many :documents, foreign_key: :user_id
 
   validates :avatar, resizable_image: true
   validates :name, presence: true

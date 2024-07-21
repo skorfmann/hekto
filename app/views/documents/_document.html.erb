@@ -1,0 +1,25 @@
+<div id="<%= dom_id document %>">
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Name</p>
+    <%= document.name %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Content</p>
+    <%= document.content %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Metadata</p>
+    <%= document.metadata %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Account</p>
+    <%= document.account_id %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">User</p>
+    <%= document.user_id %>
+  </div>
+  <% if action_name != "show" %>
+    <%= link_to "View this document", document, class: "btn btn-secondary" %>
+  <% end %>
+</div>
