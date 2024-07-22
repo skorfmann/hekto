@@ -1,5 +1,5 @@
 class DocumentSummaryJob < ApplicationJob
-  queue_as :default
+  queue_as :anthropic
 
   def perform(document_id)
     Rails.logger.info "Starting DocumentSummaryJob for document_id: #{document_id}"

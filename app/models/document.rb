@@ -12,6 +12,8 @@ class Document < ApplicationRecord
       .group_by { |doc| doc.document_date&.beginning_of_month }
   }
 
+  scope :with_metadata, -> { where.not(metadata: nil) }
+
   after_update :run_document_summary_job, if: :metadata_changed?
 
   private

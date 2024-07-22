@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   def index
     @pagy, @documents = pagy(Document.order(created_at: :desc))
-    @documents_by_month = Document.grouped_by_month
+    @documents_by_month = Document.with_metadata.grouped_by_month
 
     # Uncomment to authorize with Pundit
     # authorize @documents
@@ -71,6 +71,26 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to documents_url, status: :see_other, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def new_batch_upload
+  end
+
+  def create_batch_upload
+    if params[:files].present?
+      uploaded_count = 0
+      params[:files].each do |file|
+        document = current_account.documents.create(file:, owner: current_user)
+        if document.persisted?
+          DocumentProcessingJob.perform_later(document.id)
+          uploaded_count += 1
+        end
+      end
+      redirect_to documents_path,
+                  notice: "#{uploaded_count} documents were successfully uploaded and are being processed."
+    else
+      redirect_to new_batch_upload_documents_path, alert: 'Please select files to upload.'
     end
   end
 

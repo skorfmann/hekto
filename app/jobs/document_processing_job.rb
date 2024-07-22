@@ -1,9 +1,10 @@
 require 'base64'
 require 'pdf-reader'
-require 'mini_magick'
+require 'vips'
+require 'fileutils'
 
 class DocumentProcessingJob < ApplicationJob
-  queue_as :default
+  queue_as :anthropic
 
   def perform(document_id)
     Rails.logger.info "Starting DocumentProcessingJob for document_id: #{document_id}"
@@ -34,10 +35,36 @@ class DocumentProcessingJob < ApplicationJob
 
   def process_pdf(document)
     pdf_images = []
-    pdf = MiniMagick::Image.read(document.file.download)
-    pdf.pages.each_with_index do |page, index|
-      image = page.format('png')
-      pdf_images << Base64.strict_encode64(image.to_blob)
+
+    # Create a temporary file to store the PDF content
+    Tempfile.create(['temp_pdf', '.pdf']) do |temp_file|
+      temp_file.binmode
+      temp_file.write(document.file.download)
+      temp_file.flush
+
+      # Load the PDF using libvips at 2x scale
+      pdf = Vips::Image.new_from_file(temp_file.path, access: :sequential, scale: 2)
+      # Get the number of pages
+      n_pages = pdf.get('n-pages')
+
+      n_pages.times do |page_number|
+        # Extract each page as an image
+        image = pdf.crop(0, page_number * pdf.height, pdf.width, pdf.height)
+
+        # Create tmp/foo directory if it doesn't exist
+        debug_dir = Rails.root.join('tmp', 'foo')
+        FileUtils.mkdir_p(debug_dir)
+
+        # Save the image for debugging
+        debug_path = debug_dir.join("page_#{page_number + 1}.png")
+        image.write_to_file(debug_path.to_s)
+
+        Rails.logger.info "Saved debug image: #{debug_path}"
+
+        # Convert the image to PNG format and encode as base64
+        png_data = image.write_to_buffer('.png')
+        pdf_images << Base64.strict_encode64(png_data)
+      end
     end
 
     process_images(pdf_images, document, 'image/png')
@@ -118,7 +145,7 @@ class DocumentProcessingJob < ApplicationJob
         };
 
         Ensure all data is correctly formatted according to this structure.
-        If multiple receipts are present, return an array of Receipt objects.
+        Today is #{Date.today}. It's a German receipt.
       PROMPT
     }
 

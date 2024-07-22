@@ -14,9 +14,8 @@
 
     <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-4"><%= document.content %></p>
 
-    <div class="mt-4 flex justify-between items-center">
+    <div class="mt-4">
       <%= link_to "View details", document, class: "btn btn-primary text-sm" %>
-      <%= button_to "Delete", document_path(document), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this document?" }, class: "btn btn-danger text-sm" %>
     </div>
   </div>
 </div>

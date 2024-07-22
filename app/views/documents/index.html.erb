@@ -16,7 +16,10 @@
       </div>
     </div>
 
-    <%= link_to t("scaffold.new.title", model: "Document"), new_document_path, class: "btn btn-secondary" %>
+    <div class="flex space-x-2">
+      <%= link_to t("scaffold.new.title", model: "Document"), new_document_path, class: "btn btn-secondary" %>
+      <%= link_to "Batch Upload", new_batch_upload_documents_path, class: "btn btn-primary" %>
+    </div>
   </div>
 
   <%= tag.div id: ("documents" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6" do %>
