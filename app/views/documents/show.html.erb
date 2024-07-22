@@ -14,8 +14,12 @@
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
     <div class="p-6 flex">
       <div class="w-1/3 pr-6">
-        <% if @document.file.attached? && @document.file.content_type.start_with?('image/') %>
-          <%= image_tag @document.file.variant(resize_to_limit: [400, nil]), class: "w-full rounded-lg" %>
+        <% if @document.file.attached? %>
+          <% if @document.file.content_type.start_with?('image/') %>
+            <%= image_tag @document.file.variant(resize_to_limit: [400, nil]), class: "w-full rounded-lg" %>
+          <% elsif @document.file.content_type == 'application/pdf' %>
+            <%= image_tag @document.file.preview(resize_to_limit: [400, nil]), class: "w-full rounded-lg" %>
+          <% end %>
         <% end %>
       </div>
 
@@ -28,12 +32,29 @@
           <% if @document.metadata.present? %>
             <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
               <h3 class="text-lg font-semibold mb-2">Metadata:</h3>
-              <% metadata = JSON.parse(@document.metadata) %>
+              <% metadata = @document.metadata %>
 
               <div class="mb-4">
                 <h4 class="font-medium">Merchant:</h4>
                 <p>Name: <%= metadata['merchant']['name'] %></p>
-                <p>Address: <%= metadata['merchant']['address'] %></p>
+                <% if metadata['merchant']['address'] %>
+                  <p>Address: <%= metadata['merchant']['address'] %></p>
+                <% end %>
+                <% if metadata['merchant']['phone'] %>
+                  <p>Phone: <%= metadata['merchant']['phone'] %></p>
+                <% end %>
+                <% if metadata['merchant']['email'] %>
+                  <p>Email: <%= metadata['merchant']['email'] %></p>
+                <% end %>
+                <% if metadata['merchant']['website'] %>
+                  <p>Website: <%= metadata['merchant']['website'] %></p>
+                <% end %>
+                <% if metadata['merchant']['vatNumber'] %>
+                  <p>VAT Number: <%= metadata['merchant']['vatNumber'] %></p>
+                <% end %>
+                <% if metadata['merchant']['taxNumber'] %>
+                  <p>Tax Number: <%= metadata['merchant']['taxNumber'] %></p>
+                <% end %>
               </div>
 
               <div class="mb-4">
@@ -44,6 +65,8 @@
                       <th class="text-left">Name</th>
                       <th class="text-right">Quantity</th>
                       <th class="text-right">Price</th>
+                      <th class="text-right">Tax Rate</th>
+                      <th class="text-right">Tax Amount</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -52,6 +75,8 @@
                         <td><%= item['name'] %></td>
                         <td class="text-right"><%= item['quantity'] %></td>
                         <td class="text-right"><%= number_to_currency(item['price']['amount'], unit: item['price']['currency']) %></td>
+                        <td class="text-right"><%= number_to_percentage(item['taxRate'] * 100, precision: 2) %></td>
+                        <td class="text-right"><%= number_to_currency(item['taxAmount']['amount'], unit: item['taxAmount']['currency']) %></td>
                       </tr>
                     <% end %>
                   </tbody>
@@ -61,7 +86,9 @@
               <div class="mb-4">
                 <h4 class="font-medium">Total:</h4>
                 <p>Net: <%= number_to_currency(metadata['total']['net']['amount'], unit: metadata['total']['net']['currency']) %></p>
-                <p>Tax: <%= number_to_currency(metadata['total']['tax']['amount'], unit: metadata['total']['tax']['currency']) %></p>
+                <% metadata['total']['tax'].each do |tax| %>
+                  <p>Tax (<%= number_to_percentage(tax['rate'] * 100, precision: 2) %>): <%= number_to_currency(tax['amount']['amount'], unit: tax['amount']['currency']) %></p>
+                <% end %>
                 <p>Gross: <%= number_to_currency(metadata['total']['gross']['amount'], unit: metadata['total']['gross']['currency']) %></p>
               </div>
 
@@ -73,8 +100,12 @@
 
               <div>
                 <p><span class="font-medium">Date:</span> <%= metadata['date'] %></p>
-                <p><span class="font-medium">Time:</span> <%= metadata['time'] %></p>
-                <p><span class="font-medium">Receipt Number:</span> <%= metadata['receipt_number'] %></p>
+                <% if metadata['time'] %>
+                  <p><span class="font-medium">Time:</span> <%= metadata['time'] %></p>
+                <% end %>
+                <% if metadata['receipt_number'] %>
+                  <p><span class="font-medium">Receipt Number:</span> <%= metadata['receipt_number'] %></p>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -85,7 +116,7 @@
           <p><span class="font-medium">Updated:</span> <%= l(@document.updated_at, format: :long) %></p>
         </div>
 
-        <% if @document.file.attached? && !@document.file.content_type.start_with?('image/') %>
+        <% if @document.file.attached? && !@document.file.content_type.start_with?('image/') && @document.file.content_type != 'application/pdf' %>
           <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-6">
             <p class="text-gray-600 dark:text-gray-300">
               <span class="font-medium">File:</span> <%= @document.file.filename %>

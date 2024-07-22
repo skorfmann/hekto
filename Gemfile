@@ -73,3 +73,7 @@ eval_gemfile "Gemfile.jumpstart"
 # gem "strong_migrations"
 
 gem "anthropic", "~> 0.3.0"
+
+gem "pdf-reader", "~> 2.12"
+
+gem "mini_magick", "~> 4.13"

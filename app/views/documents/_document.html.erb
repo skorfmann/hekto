@@ -12,10 +12,7 @@
       <% end %>
     <% end %>
 
-    <div class="text-sm text-gray-600 dark:text-gray-300 mb-2">
-      <p><span class="font-medium">Content:</span> <%= truncate(document.content, length: 100) %></p>
-      <p><span class="font-medium">Metadata:</span> <%= truncate(document.metadata, length: 50) %></p>
-    </div>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-4"><%= document.content %></p>
 
     <div class="mt-4 flex justify-between items-center">
       <%= link_to "View details", document, class: "btn btn-primary text-sm" %>

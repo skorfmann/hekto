@@ -1,4 +1,6 @@
 require 'base64'
+require 'pdf-reader'
+require 'mini_magick'
 
 class DocumentProcessingJob < ApplicationJob
   queue_as :default
@@ -14,98 +16,125 @@ class DocumentProcessingJob < ApplicationJob
     end
     Rails.logger.info 'Anthropic client configured'
 
-    # Read and encode the file content
-    file_content = document.file.download
-    encoded_content = Base64.strict_encode64(file_content)
-    Rails.logger.info "File content encoded, size: #{encoded_content.bytesize} bytes"
-
-    # Prepare the message for Claude
-    message = [
-      {
-        type: 'image',
-        source: {
-          type: 'base64',
-          media_type: document.file.content_type,
-          data: encoded_content
-        }
-      },
-      {
-        type: 'text',
-        text: <<~PROMPT
-          Extract receipt data from the above image and format it as JSON according to the following type definition:
-
-          type Receipt = {
-            merchant: {
-              name: string;
-              address?: string;
-            };
-            items: Array<{
-              name: string;
-              quantity: number;
-              price: {
-                amount: number;
-                currency: string; // ISO 4217 currency code
-              };
-            }>;
-            total: {
-              net?: {
-                amount: number;
-                currency: string;
-              };
-              tax?: {
-                amount: number;
-                currency: string;
-              };
-              gross: {
-                amount: number;
-                currency: string;
-              };
-            };
-            payment: {
-              method: string;
-              amount: {
-                amount: number;
-                currency: string;
-              };
-            };
-            date: string; // ISO 8601 date format (YYYY-MM-DD)
-            time?: string; // Time in HH:MM:SS format
-            receipt_number?: string;
-          };
-
-          Ensure all data is correctly formatted according to this structure.
-        PROMPT
-      }
-    ]
-    Rails.logger.info 'Message prepared for Claude'
-
-    Rails.logger.info 'Sending request to Claude'
-    response = Anthropic::Client.new.messages(
-      parameters: {
-        model: Rails.application.credentials.dig(:anthropic, :model) || 'claude-3-5-sonnet-20240620',
-        messages: [
-          { role: 'user', content: message },
-          { role: 'assistant', content: '{' }
-        ],
-        max_tokens: 1000
-      }
-    )
-    Rails.logger.info 'Received response from Claude'
-
-    puts "Claude response: #{response.inspect}"
-
-    # Extract the response content
-    extracted_data = response['content'][0]['text']
-    Rails.logger.info "Extracted data: #{extracted_data}"
-
-    # Update the document with extracted data as metadata
-    document.update(metadata: "{#{extracted_data}")
-    Rails.logger.info 'Document updated with extracted data'
+    # Process file content based on file type
+    if document.file.content_type == 'application/pdf'
+      process_pdf(document)
+    else
+      process_image(document)
+    end
 
     Rails.logger.info "DocumentProcessingJob completed successfully for document_id: #{document_id}"
   rescue StandardError => e
     Rails.logger.error "Error processing document #{document_id}: #{e.message}"
     Rails.logger.error e.backtrace.join("\n")
     raise # Re-raise the exception
+  end
+
+  private
+
+  def process_pdf(document)
+    pdf_images = []
+    pdf = MiniMagick::Image.read(document.file.download)
+    pdf.pages.each_with_index do |page, index|
+      image = page.format('png')
+      pdf_images << Base64.strict_encode64(image.to_blob)
+    end
+
+    process_images(pdf_images, document, 'image/png')
+  end
+
+  def process_image(document)
+    encoded_content = Base64.strict_encode64(document.file.download)
+    process_images([encoded_content], document, document.file.content_type)
+  end
+
+  def process_images(encoded_images, document, mime_type)
+    content = encoded_images.map do |encoded_content|
+      {
+        type: 'image',
+        source: {
+          type: 'base64',
+          media_type: mime_type,
+          data: encoded_content
+        }
+      }
+    end
+
+    content << {
+      type: 'text',
+      text: <<~PROMPT
+        Extract receipt data from the above image(s) and format it as JSON according to the following type definition:
+
+        type Receipt = {
+          merchant: {
+            name: string;
+            address?: string;
+            phone?: string;
+            email?: string;
+            website?: string;
+            vatNumber?: string;
+            taxNumber?: string;
+          };
+          items: Array<{
+            name: string;
+            quantity: number;
+            price: {
+              amount: number;
+              currency: string; // ISO 4217 currency code
+            };
+            taxRate: number; // VAT tax rate as a decimal (e.g., 0.20 for 20%)
+            taxAmount: {
+              amount: number;
+              currency: string;
+            };
+          }>;
+          total: {
+            net: {
+              amount: number;
+              currency: string;
+            };
+            tax: Array<{
+              rate: number;
+              amount: {
+                amount: number;
+                currency: string;
+              };
+            }>;
+            gross: {
+              amount: number;
+              currency: string;
+            };
+          };
+          payment: {
+            method: string;
+            amount: {
+              amount: number;
+              currency: string;
+            };
+          };
+          date: string; // ISO 8601 date format (YYYY-MM-DD)
+          time?: string; // Time in HH:MM:SS format
+          receipt_number?: string;
+        };
+
+        Ensure all data is correctly formatted according to this structure.
+        If multiple receipts are present, return an array of Receipt objects.
+      PROMPT
+    }
+
+    response = Anthropic::Client.new.messages(
+      parameters: {
+        model: Rails.application.credentials.dig(:anthropic, :model) || 'claude-3-5-sonnet-20240620',
+        messages: [
+          { role: 'user', content: },
+          { role: 'assistant', content: '{' }
+        ],
+        max_tokens: 4000
+      }
+    )
+
+    result = response['content'][0]['text']
+    parsed_result = JSON.parse("{#{result}")
+    document.update(metadata: parsed_result)
   end
 end

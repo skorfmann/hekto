@@ -3,7 +3,8 @@ class DocumentsController < ApplicationController
 
   # GET /documents
   def index
-    @pagy, @documents = pagy(Document.sort_by_params(params[:sort], sort_direction))
+    @pagy, @documents = pagy(Document.order(created_at: :desc))
+    @documents_by_month = Document.grouped_by_month
 
     # Uncomment to authorize with Pundit
     # authorize @documents
@@ -87,6 +88,6 @@ class DocumentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def document_params
-    params.require(:document).permit(:file)
+    params.require(:document).permit(:file, metadata: {})
   end
 end
