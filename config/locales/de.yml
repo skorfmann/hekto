@@ -1,0 +1,583 @@
+# Files in the config/locales directory are used for internationalization and
+# are automatically loaded by Rails. If you want to use locales other than
+# English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more about the API, please read the Rails Internationalization guide
+# at https://guides.rubyonrails.org/i18n.html.
+#
+# Be aware that YAML interprets the following case-insensitive strings as
+# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# must be quoted to be interpreted as strings. For example:
+#
+#     en:
+#       "yes": yup
+#       enabled: "ON"
+
+de:
+  are_you_sure: "Sind Sie sicher?"
+  back: "Zurück"
+  cancel: "Abbrechen"
+  create_an_account_first: "Bitte erstellen Sie zuerst ein Konto."
+  delete: "Löschen"
+  edit: "Bearbeiten"
+  view: "Ansehen"
+  must_be_an_admin: "Sie müssen Administrator sein, um das zu tun."
+  processing: "Wird verarbeitet..."
+  something_went_wrong: "Etwas ist schiefgelaufen"
+  unauthorized: "Sie sind nicht berechtigt, diese Aktion durchzuführen."
+  reveal: "Aufdecken"
+
+  account_invitations_mailer:
+    invite:
+      subject: "%{inviter} hat Sie zu %{account} eingeladen"
+      header_html: "%{inviter} hat Sie eingeladen, an <strong>%{account}</strong> mitzuarbeiten"
+      description_html: "Sie können diese Einladung %{link}."
+      accept_or_decline: "annehmen oder ablehnen"
+      view_invitation: "Einladung ansehen"
+
+  account_invitations:
+    invite_user: "Benutzer einladen"
+    authenticate: "Bitte melden Sie sich an oder erstellen Sie ein Konto, um diese Einladung anzunehmen"
+    not_found: "Hoppla, wir konnten diese Einladung nicht finden. Bitten Sie Ihren Kontoadministrator um eine neue Einladung."
+    show:
+      invited_you_to_join_html: "<strong>%{inviter}</strong> hat Sie eingeladen, <strong>%{account}</strong> beizutreten"
+      accept: "Einladung annehmen"
+      decline: "Ablehnen"
+
+  account_users:
+    updated: "Konto-Mitglied wurde erfolgreich aktualisiert."
+    destroyed: "Konto-Mitglied wurde erfolgreich entfernt."
+    edit:
+      description: "Bearbeiten der Kontoberechtigungen für %{user}."
+
+  accounts:
+    index:
+      title: "Konten"
+      create: "Konto erstellen"
+      switch: "Wechseln"
+      current: "Aktuelles Konto"
+    show:
+      invite: "Benutzer einladen"
+      resend_invite: "Einladung erneut senden"
+      edit: "Bearbeiten"
+      edit_account: "Konto bearbeiten"
+      copy_link: "Link kopieren"
+      switch: "Wechseln"
+      personal_team_description: "Ihr persönliches Konto ist privat. Erstellen Sie ein neues Konto, um es mit Ihrem Team zu teilen."
+    new:
+      title: "Neues Konto"
+      description: "Erstellen Sie ein Konto, um mit anderen zusammenzuarbeiten und zu teilen."
+    edit:
+      title: "Bearbeiten"
+    created: "Konto wurde erfolgreich erstellt."
+    created_and_switch_html: "Konto wurde erfolgreich erstellt. <a class=\"underline\" href=\"%{link}\">Konto wechseln</a>"
+    updated: "Konto wurde erfolgreich aktualisiert."
+    destroyed: "Konto wurde erfolgreich gelöscht."
+    admin_required: "Nur Kontoadministratoren dürfen das tun."
+    personal:
+      cannot_delete: "Sie können Ihr persönliches Konto nicht löschen."
+    users: "Benutzer"
+    roles: "Rollen"
+    account_invitations:
+      sent: "Einladung wurde an %{email} gesendet."
+      updated: "Einladung wurde erfolgreich aktualisiert."
+      destroyed: "Einladung wurde erfolgreich entfernt."
+      new:
+        title: "Benutzer einladen"
+        description: "Laden Sie einen Benutzer ein, um Ihrem Konto beizutreten."
+        send: "Einladung senden"
+        cancel: "Abbrechen"
+      edit:
+        title: "Einladung bearbeiten"
+        description: "Einladung bearbeiten oder stornieren."
+        back: "Zurück"
+        update: "Einladung aktualisieren"
+        destroy: "Einladung stornieren"
+    transfers:
+      form:
+        title: "Besitzrechte übertragen"
+        description: "Übertragen Sie den Besitz dieses Kontos auf einen anderen Benutzer."
+        transfer: "Übertragen"
+        are_you_sure: "Sind Sie sicher, dass Sie dieses Konto übertragen möchten?"
+      update:
+        not_allowed: "Sie dürfen das nicht tun."
+        invalid: "Bitte wählen Sie ein Mitglied des Kontos aus, um den Besitz zu übertragen."
+        success: "Konto erfolgreich übertragen."
+
+  announcements:
+    index:
+      title: "Was ist neu"
+      description: "Neue Updates und Verbesserungen für %{name}"
+      empty_placeholder: "Spannende Dinge kommen bald!"
+
+    show:
+      title: "Was ist neu"
+      description: "Neue Updates und Verbesserungen für %{name}"
+      back: "Zurück"
+
+  api_tokens:
+    created: "API-Token erfolgreich erstellt"
+    updated: "API-Token erfolgreich aktualisiert"
+    destroyed: "Ihr API-Token wurde widerrufen"
+    all: "Alle API-Tokens"
+    default: "Standard"
+    app: "App"
+
+    index:
+      title: "API-Tokens"
+      create: "API-Token erstellen"
+      view: "Ansehen"
+    new:
+      title: "Neues API-Token"
+    edit:
+      title: "Bearbeiten"
+    show:
+      edit: "Token bearbeiten"
+      click_to_copy: "Klicken, um zu kopieren"
+      revoke: "Token widerrufen"
+      confirm: "Sind Sie sicher, dass Sie dieses API-Token widerrufen möchten?"
+      auth_header: "Mit Header authentifizieren"
+
+  application:
+    footer:
+      about: "Über uns"
+      privacy: "Datenschutzrichtlinie"
+      terms: "Nutzungsbedingungen"
+    account_navbar:
+      profile: "Profil"
+      password: "Passwort"
+      connected_accounts: "Verbundene Konten"
+      billing: "Abrechnung"
+      accounts: "Konten"
+      api_tokens: "API"
+    flash:
+      confirm_payment: "Bestätigen Sie Ihre letzte Zahlung"
+    navbar:
+      profile: "Profil"
+      password: "Passwort"
+      connected_accounts: "Verbundene Konten"
+      billing: "Abrechnung"
+      api_tokens: "API"
+      accounts: "Konten"
+      admin: "Admin"
+      dashboard: "Dashboard"
+      sign_out: "Abmelden"
+      log_in: "Anmelden"
+      sign_up: "Registrieren"
+    right_nav:
+      pricing: "Preise"
+      announcements: "Was ist neu"
+
+  dashboard:
+    show:
+      title: "Dashboard"
+
+  oauth:
+    sign_in_with: "Mit %{provider} anmelden"
+    apple: "Apple"
+    developer: "Entwickler"
+    facebook: "Facebook"
+    github: "GitHub"
+    gitlab: "GitLab"
+    google_oauth2: "Google"
+    microsoft_graph: "Microsoft"
+    stripe: "Stripe"
+    twitter: "Twitter"
+
+  payments:
+    success: "Vielen Dank für Ihre Anmeldung!"
+    show:
+      successful: "Zahlung erfolgreich"
+      successful_description: "Diese Zahlung wurde bereits erfolgreich bestätigt."
+      cancelled: "Zahlung abgebrochen"
+      cancelled_description: "Diese Zahlung wurde abgebrochen."
+      confirm: "Bestätigen Sie Ihre %{amount} Zahlung"
+      confirm_description: "Zusätzliche Bestätigung ist erforderlich, um Ihre Zahlung zu verarbeiten. Bitte bestätigen Sie Ihre Zahlung, indem Sie Ihre Zahlungsdetails unten ausfüllen."
+      back: "Zurück"
+      confirm_button: "Zahlung bestätigen"
+
+  scaffold:
+    edit:
+      title: "%{model} bearbeiten"
+    new:
+      title: "Neues %{model}"
+    actions: "Aktionen"
+    view: "Ansehen"
+
+  static:
+    no_plans_html: "Es sind keine Preispläne konfiguriert. %{link}."
+    pricing:
+      heading: "Preispläne"
+      subhead: "Einfache, transparente Preise, um Ihr Online-Geschäft in Gang zu setzen"
+      monthly: "Monatlich"
+      yearly: "Jährlich"
+
+    about:
+      title: "Über uns"
+    privacy:
+      title: "Datenschutzrichtlinie"
+    terms:
+      title: "Nutzungsbedingungen"
+
+  subscriptions:
+    created: "Vielen Dank für Ihre Anmeldung!"
+    resumed: "Ihr Abonnement wurde wieder aufgenommen."
+    billing_settings_updated: "Abrechnungseinstellungen wurden erfolgreich aktualisiert."
+    already_subscribed: "Sie sind bereits abonniert."
+
+    plan:
+      contact_us: "Kontaktieren Sie uns"
+      contact_us_price: "Lassen Sie uns sprechen"
+      change_plan: "Plan ändern"
+      current_plan: "Aktueller Plan"
+      get_started: "Loslegen"
+      start_trial: "Testversion starten"
+      processing: "Wird verarbeitet..."
+
+    index:
+      title: "Abrechnung"
+      contact_admin: "Kontaktieren Sie einen Administrator, um das %{account}-Abonnement zu ändern."
+      subscriptions: "Aktueller Plan"
+      not_subscribed: "Sie sind derzeit nicht abonniert."
+      choose_plan: "Plan wählen"
+
+    new:
+      title: "Kasse"
+      account: "Konto"
+      billing_address: "Rechnungsadresse"
+      payment_method: "Zahlungsmethode"
+      change: "Ändern"
+      subscribe: "Abonnieren"
+      start_trial: "Testversion starten"
+      processing: "Wird verarbeitet..."
+      help: "Brauchen Sie Hilfe?"
+      contact_html: "Zögern Sie nicht, %{link}."
+      renews_html: "Erneuert sich automatisch<br/>nach 1 %{interval}"
+      contact_support: "Support kontaktieren"
+      contact_subject: "Ich habe eine Frage zu %{product}"
+      testimonial: "%{product} hat mein Leben so viel einfacher gemacht. Ich kann es nur empfehlen."
+      subtotal: "Zwischensumme"
+      tax: "Steuern"
+      total: "Gesamtbetrag heute"
+
+    edit:
+      trial_ends: "Ihre Testversion endet in %{days}."
+      title: "Plan ändern"
+      description: "Einfache, transparente Preise, um Ihr Online-Geschäft in Gang zu setzen"
+      monthly: "Monatlich"
+      yearly: "Jährlich"
+      current_plan: "Aktueller Plan"
+      processing: "Wird verarbeitet..."
+
+    update:
+      success: "Ihr Plan wurde erfolgreich aktualisiert."
+
+    subscription:
+      cancel_plan: "Plan stornieren"
+      canceled_on_trial: "Nachdem Ihre Testversion am %{date} endet, wird dieser Plan automatisch storniert."
+      title: "Aktuelle Pläne"
+      free_trial: "Kostenlose Testversion"
+      free_trial_ends: "Ihre Testversion endet am %{date}."
+      trial: "Nachdem Ihre Testversion am %{date} endet, wird dieser Plan automatisch fortgesetzt."
+      resume: "Plan fortsetzen"
+      change_plan: "Plan ändern"
+      pause: "Plan pausieren"
+      canceled: "Storniert"
+      incomplete: "Unvollständig"
+      confirm_payment: "Zahlung bestätigen"
+      ends_at: "Ihr Plan wird am %{date} storniert."
+      paused_at: "Ihr Plan wird am %{date} pausiert."
+      paused: "Ihr Plan ist pausiert."
+      view_usage: "Nutzung ansehen"
+      view_upcoming_invoice: "Kommende Rechnung ansehen"
+      past_due: "Überfällig"
+      unpaid: "Unbezahlt"
+      update_payment_method: "Zahlungsmethode aktualisieren"
+      failed_payment: "Ihre letzte Zahlung ist fehlgeschlagen. Aktualisieren Sie Ihre Zahlungsmethode, um diesen Plan fortzusetzen."
+
+    payment_methods:
+      new:
+        billing: "Abrechnung"
+        payment_details: "Zahlungsdetails"
+        past_due: "Ihre Zahlungsmethode wurde abgelehnt. Bitte fügen Sie eine andere Zahlungsmethode hinzu, um fortzufahren."
+
+      create:
+        updated: "Ihre Zahlungsmethode wurde erfolgreich aktualisiert."
+
+      forms:
+        braintree:
+          button: "Karte aktualisieren"
+        fake_processor:
+          message: "Sie haben kostenlosen Zugriff und müssen keine Zahlungsmethode hinzufügen."
+        stripe:
+          credit_or_debit_card: "Kredit- oder Debitkarte"
+          button: "Karte aktualisieren"
+
+    billing_address:
+      billing_address: "Rechnungsadresse"
+      add_billing_address: "Rechnungsadresse hinzufügen"
+      created: "Ihre Rechnungsadresse wurde erfolgreich hinzugefügt."
+      update_billing_address: "Rechnungsadresse aktualisieren"
+      updated: "Ihre Rechnungsadresse wurde erfolgreich aktualisiert."
+      no_billing_address: "Sie haben keine Rechnungsadresse aufgezeichnet."
+      destroyed: "Ihre Rechnungsadresse wurde erfolgreich entfernt."
+      edit: "Bearbeiten"
+
+    billing_addresses:
+      show:
+        tax_may_apply: "Steuern können anfallen."
+
+    billing_info:
+      extra_billing_info: "Zusätzliche Abrechnungsinformationen"
+      additional_information: "Fügen Sie zu allen Ihren Rechnungen zusätzliche Informationen hinzu, wie z. B. Ihre Umsatzsteuer-ID, den vollständigen Firmennamen und die Adresse."
+      save_info: "Informationen speichern"
+      saving: "Wird gespeichert..."
+      add_info: "Informationen hinzufügen"
+
+    billing_email:
+      billing_email: "Rechnungs-E-Mail"
+      description: "Rechnungen an eine bestimmte E-Mail-Adresse senden, zusammen mit dem Kontoinhaber."
+      save: "Speichern"
+      saving: "Wird gespeichert..."
+
+    charges:
+      title: "Abrechnungsverlauf"
+      date: "Datum"
+      amount: "Betrag"
+      invoice: "Rechnung"
+      receipt: "Quittung"
+      view: "Ansehen"
+      empty: "Kein Abrechnungsverlauf."
+
+    pauses:
+      show:
+        title: "Plan pausieren"
+        description: "Sie können Ihr Abonnement pausieren und zu einem späteren Zeitpunkt fortsetzen."
+        note: "Die Pause tritt am ersten Tag Ihres nächsten Abrechnungszyklus in Kraft. Sie werden nicht belastet, während Ihr Konto pausiert ist."
+        back: "Zurück zur Abrechnung"
+        button: "Plan pausieren"
+        processing: "Wird pausiert..."
+
+      update:
+        resumed: "Ihr Abonnement wurde pausiert."
+
+    resumes:
+      show:
+        title: "Plan fortsetzen"
+        resume: "Dieser Plan wird nicht mehr storniert und wird automatisch erneuert."
+        back: "Zurück zur Abrechnung"
+        button: "Plan fortsetzen"
+        processing: "Wird fortgesetzt..."
+
+      update:
+        resumed: "Ihr Abonnement wurde fortgesetzt."
+
+    summary:
+      quantity: "Menge: %{quantity} zu %{price} %{unit}"
+      per_unit: "pro %{unit}"
+      each: "je"
+
+    cancels:
+      show:
+        title: "Plan stornieren"
+        description: "Sie können jederzeit stornieren, verlieren aber den Zugriff auf %{product}."
+        help_html: "Müssen Sie mit jemandem sprechen? %{link} -- wir helfen gerne."
+        contact_us: "Kontaktieren Sie uns"
+        subject: "Frage zu %{product}"
+        active_until: "Ihr Plan wird storniert, ist aber noch bis zum Ende Ihres Abrechnungszeitraums verfügbar."
+        resume: "Wenn Sie Ihre Meinung ändern, können Sie Ihr Abonnement fortsetzen."
+        button: "Plan stornieren"
+        back: "Zurück zur Abrechnung"
+        processing: "Wird storniert..."
+
+      destroy:
+        resumed: "Ihr Abonnement wurde storniert."
+
+    upcomings:
+      show:
+        title: "Kommende Rechnung"
+        description: "Die aktuellen Kosten für Ihre Nutzung in diesem Abrechnungszeitraum."
+        line_items:
+          description: "Beschreibung"
+          quantity: "Menge"
+          unit_price: "Stückpreis"
+          total: "Gesamt"
+        back: "Zurück zur Abrechnung"
+
+    forms:
+      stripe:
+        credit_or_debit_card: "Kredit- oder Debitkarte"
+
+  account:
+    passwords:
+      updated: "Ihr Passwort wurde erfolgreich geändert."
+      edit:
+        update_password: "Passwort aktualisieren"
+        update: "Aktualisieren"
+        two_factor:
+          header: "Zwei-Faktor-Authentifizierung"
+          description: "Beim Anmelden müssen Sie einen einmaligen Code zusammen mit einem Ihrer Geräte eingeben."
+          enable: "Zwei-Faktor-Authentifizierung aktivieren"
+          disable: "Zwei-Faktor-Authentifizierung deaktivieren"
+
+  themes:
+    system: "Mit System synchronisieren"
+    light: "Hell"
+    dark: "Dunkel"
+
+  users:
+    agreements:
+      show:
+        title: "%{agreement} geändert"
+        last_updated: "Zuletzt aktualisiert am %{date}"
+        description: "Bevor Sie fortfahren können, müssen Sie die neuen %{agreement} lesen und akzeptieren."
+        accept: "Ich akzeptiere"
+        decline: "Ich lehne ab"
+      destroy:
+        declined: "Um den Dienst weiterhin zu nutzen, melden Sie sich bitte an und akzeptieren Sie die %{agreement}."
+    avatar:
+      upload: "Avatar hochladen"
+    connected_accounts:
+      index:
+        title: "Verbundene Konten"
+        description: "Das Verbinden Ihrer Social-Media-Konten erleichtert das Anmelden."
+        redirecting: "Wird weitergeleitet..."
+        none: "Sie haben keine verbundenen Konten."
+      connected_account:
+        remove: "Entfernen"
+    omniauth_callbacks:
+      account_exists: "Wir haben bereits ein Konto mit dieser E-Mail-Adresse. Melden Sie sich mit Ihrem früheren Konto an, bevor Sie dieses verbinden."
+      connected_to_another_account: "Dieses Konto ist bereits mit einem anderen Benutzer verbunden."
+    sessions:
+      create:
+        incorrect_verification_code: "Falscher Verifizierungscode"
+    sudo:
+      header: "Passwort bestätigen, um fortzufahren"
+      submit: "Passwort bestätigen"
+      forgot_password: "Passwort vergessen?"
+      invalid_password: "Ungültiges Passwort"
+    two_factor:
+      disabled: "Zwei-Faktor-Authentifizierung ist jetzt deaktiviert"
+      enabled: "Zwei-Faktor-Authentifizierung wurde erfolgreich aktiviert"
+      header: "Zwei-Faktor-Authentifizierung"
+      submit: "Fortsetzen"
+      backup_codes:
+        header: "Backup-Codes"
+        description: "Wiederherstellungscodes werden verwendet, um auf Ihr Konto zuzugreifen, falls Sie keine Zwei-Faktor-Authentifizierungscodes erhalten können."
+        warning: "Laden Sie Ihre Wiederherstellungscodes herunter, drucken Sie sie aus oder kopieren Sie sie, bevor Sie fortfahren."
+        save_codes: "Behandeln Sie Ihre Wiederherstellungscodes so sorgfältig wie Ihr Passwort!"
+        cancel: "Abbrechen"
+        next: "Weiter"
+      verify:
+        header: "Scannen Sie diesen Code mit Ihrer App."
+        subheader: "Scannen Sie den QR-Code mit der Zwei-Faktor-Authentifizierungs-App auf Ihrem Telefon."
+        instructions_1_html: "Installieren Sie Authy: %{ios} oder %{android}"
+        instructions_2: "In der App \"Add account\" auswählen"
+        instructions_3: "\"Scan QR Code\" auswählen"
+        instructions_4: "Probleme beim Scannen? Geben Sie stattdessen diesen Schlüssel in Ihrer App ein:"
+        verify_header: "Geben Sie den sechsstelligen Code aus der Anwendung ein"
+        verify_description: "Nachdem Sie den QR-Code gescannt haben, zeigt die App einen Code an, den Sie eingeben können, um fortzufahren."
+        cancel: "Abbrechen"
+        verify: "Verifizieren"
+
+  layouts:
+    mailer:
+      copyright_html: "Copyright &copy; %{year}, Alle Rechte vorbehalten."
+      mailing_address: "Unsere Postanschrift lautet:"
+      view_in_browser: "Dies in Ihrem Browser ansehen"
+      unsubscribe: "Von dieser Liste abmelden"
+      preferences: "Abonnementeinstellungen aktualisieren"
+
+  notifications:
+    index:
+      title: "Benachrichtigungen"
+      empty_placeholder: "Noch nichts hier — aber bald."
+      mark_all_as_read: "Alle als gelesen markieren"
+    invite_accepted: "%{user} hat Ihre Einladung angenommen."
+    account_transferred: "%{previous_owner} hat Sie zum Besitzer des %{account}-Kontos gemacht."
+    empty: "Noch nichts hier — aber bald."
+    empty_description: "Wir lassen Sie wissen, wenn Sie neue Benachrichtigungen haben."
+
+  activerecord:
+    attributes:
+      api_token:
+        last_used_at: "Zuletzt verwendet"
+        created_at: "Erstellt"
+      account:
+        name_on_card: "Name auf Karte"
+      user:
+        theme: "Farbthema"
+
+    errors:
+      models:
+        account:
+          attributes:
+            domain:
+              reserved: "%{value} ist reserviert."
+            subdomain:
+              reserved: "%{value} ist reserviert."
+              format: "muss mindestens 2 Zeichen und alphanumerisch sein"
+        account_invitation:
+          attributes:
+            email:
+              invited: "wurde bereits eingeladen"
+        account_user:
+          attributes:
+            admin:
+              cannot_be_removed: "Rolle kann nicht für den Kontoinhaber entfernt werden"
+
+  errors:
+    messages:
+      image_format_not_supported: "Bildformat nicht unterstützt"
+
+  helpers:
+    label:
+      country: "Land oder Region"
+      account:
+        name: "Kontoname"
+      user:
+        name: "Vollständiger Name"
+
+    placeholder:
+      name_on_card: "Vollständiger Name"
+      account_invitation:
+        name: "Vollständiger Name"
+        email: "beispiel@domain.com"
+      account:
+        name: "Kontoname"
+        domain: "beispiel.com"
+        subdomain: "beispiel"
+        name_on_card: "Vollständiger Name"
+        extra_billing_info: "Umsatzsteuer-ID, Firmenname, Adresse, etc..."
+        billing_email: "konto@beispiel.com"
+      api_token:
+        name: "Token-Name"
+      user:
+        name: "Steve Jobs"
+        email: "du@beispiel.com"
+        password: "passwort"
+
+  number:
+    currency:
+      format:
+        unit: '€'
+        format: '%n %u'
+        separator: ','
+        delimiter: '.'
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false

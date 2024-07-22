@@ -24,7 +24,61 @@
 
         <div class="space-y-4 text-gray-600 dark:text-gray-300 mb-6">
           <p><span class="font-medium">Content:</span> <%= @document.content %></p>
-          <p><span class="font-medium">Metadata:</span> <%= @document.metadata %></p>
+
+          <% if @document.metadata.present? %>
+            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
+              <h3 class="text-lg font-semibold mb-2">Metadata:</h3>
+              <% metadata = JSON.parse(@document.metadata) %>
+
+              <div class="mb-4">
+                <h4 class="font-medium">Merchant:</h4>
+                <p>Name: <%= metadata['merchant']['name'] %></p>
+                <p>Address: <%= metadata['merchant']['address'] %></p>
+              </div>
+
+              <div class="mb-4">
+                <h4 class="font-medium">Items:</h4>
+                <table class="w-full">
+                  <thead>
+                    <tr>
+                      <th class="text-left">Name</th>
+                      <th class="text-right">Quantity</th>
+                      <th class="text-right">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% metadata['items'].each do |item| %>
+                      <tr>
+                        <td><%= item['name'] %></td>
+                        <td class="text-right"><%= item['quantity'] %></td>
+                        <td class="text-right"><%= number_to_currency(item['price']['amount'], unit: item['price']['currency']) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="mb-4">
+                <h4 class="font-medium">Total:</h4>
+                <p>Net: <%= number_to_currency(metadata['total']['net']['amount'], unit: metadata['total']['net']['currency']) %></p>
+                <p>Tax: <%= number_to_currency(metadata['total']['tax']['amount'], unit: metadata['total']['tax']['currency']) %></p>
+                <p>Gross: <%= number_to_currency(metadata['total']['gross']['amount'], unit: metadata['total']['gross']['currency']) %></p>
+              </div>
+
+              <div class="mb-4">
+                <h4 class="font-medium">Payment:</h4>
+                <p>Method: <%= metadata['payment']['method'] %></p>
+                <p>Amount: <%= number_to_currency(metadata['payment']['amount']['amount'], unit: metadata['payment']['amount']['currency']) %></p>
+              </div>
+
+              <div>
+                <p><span class="font-medium">Date:</span> <%= metadata['date'] %></p>
+                <p><span class="font-medium">Time:</span> <%= metadata['time'] %></p>
+                <p><span class="font-medium">Receipt Number:</span> <%= metadata['receipt_number'] %></p>
+              </div>
+            </div>
+          <% end %>
+
           <p><span class="font-medium">Account:</span> <%= @document.account_id %></p>
           <p><span class="font-medium">User:</span> <%= @document.user_id %></p>
           <p><span class="font-medium">Created:</span> <%= l(@document.created_at, format: :long) %></p>
