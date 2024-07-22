@@ -59,6 +59,10 @@ Rails.application.configure do
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
 
+  # Set Active Job logger to :info level
+  config.active_job.logger = ActiveSupport::Logger.new($stdout)
+  config.active_job.logger.level = :info
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

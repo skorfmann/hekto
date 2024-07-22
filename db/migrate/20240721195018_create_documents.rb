@@ -1,6 +1,6 @@
 class CreateDocuments < ActiveRecord::Migration[7.2]
   def change
-    create_table :documents, id: :uuid do |t|
+    create_table :documents do |t|
       t.string :name
       t.text :content
       t.jsonb :metadata

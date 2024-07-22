@@ -19,10 +19,12 @@
     <%= link_to t("scaffold.new.title", model: "Document"), new_document_path, class: "btn btn-secondary" %>
   </div>
 
-  <%= tag.div id: ("documents" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6 space-y-8" do %>
-    <%= render partial: "documents/document", collection: @documents, as: :document, cached: true %>
+  <%= tag.div id: ("documents" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6" do %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <%= render partial: "documents/document", collection: @documents, as: :document, cached: true %>
+    </div>
 
-    <div class="hidden only:block text-center">
+    <div class="hidden only:block text-center mt-8">
       <p class="mb-4 h3">Create your first Document</p>
       <%= link_to t("scaffold.new.title", model: "Document"), new_document_path, class: "btn btn-primary" %>
     </div>

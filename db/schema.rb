@@ -148,7 +148,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_195018) do
     t.index ["owner_id", "owner_type"], name: "index_connected_accounts_on_owner_id_and_owner_type"
   end
 
-  create_table "documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "documents", force: :cascade do |t|
     t.string "name"
     t.text "content"
     t.jsonb "metadata"
