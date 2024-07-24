@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_21_195018) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_23_193043) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "account_invitations", force: :cascade do |t|
@@ -156,8 +157,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_195018) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "vendor_id"
     t.index ["account_id"], name: "index_documents_on_account_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
+    t.index ["vendor_id"], name: "index_documents_on_vendor_id"
   end
 
   create_table "inbound_webhooks", force: :cascade do |t|
@@ -476,6 +479,23 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_195018) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vendors", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.string "city"
+    t.string "country"
+    t.jsonb "metadata"
+    t.jsonb "sources"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.tsvector "name_vector"
+    t.tsvector "address_vector"
+    t.index ["account_id"], name: "index_vendors_on_account_id"
+    t.index ["address_vector"], name: "index_vendors_on_address_vector", using: :gin
+    t.index ["name_vector"], name: "index_vendors_on_name_vector", using: :gin
+  end
+
   add_foreign_key "account_invitations", "accounts"
   add_foreign_key "account_invitations", "users", column: "invited_by_id"
   add_foreign_key "account_users", "accounts"
@@ -485,6 +505,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_195018) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "documents", "accounts"
   add_foreign_key "documents", "users"
+  add_foreign_key "documents", "vendors"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
@@ -494,4 +515,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_195018) do
   add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
+  add_foreign_key "vendors", "accounts"
 end

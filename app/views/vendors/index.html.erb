@@ -1,0 +1,46 @@
+<%= content_for :title, "Vendors" %>
+<%= turbo_stream_from :vendors %>
+
+<div class="container px-4 mx-auto my-8">
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="h3">Vendors</h1>
+    <%= link_to t("scaffold.new.title", model: "Vendor"), new_vendor_path, class: "btn btn-secondary" %>
+  </div>
+
+  <div class="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-lg">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+      <thead class="bg-gray-50 dark:bg-gray-800">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <%= sortable @vendors, :name, "Name" %>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <%= sortable @vendors, :address, "Address" %>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            Documents
+          </th>
+          <th scope="col" class="relative px-6 py-3">
+            <span class="sr-only">Actions</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+        <%= render partial: "vendors/vendor", collection: @vendors, as: :vendor, cached: true %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if @pagy.pages > 1 %>
+    <div class="my-6 text-center">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
+
+  <% if @vendors.empty? %>
+    <div class="text-center mt-8">
+      <p class="mb-4 h3">Create your first Vendor</p>
+      <%= link_to t("scaffold.new.title", model: "Vendor"), new_vendor_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

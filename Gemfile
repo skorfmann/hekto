@@ -77,3 +77,5 @@ gem "anthropic", "~> 0.3.0"
 gem "pdf-reader", "~> 2.12"
 
 gem "mini_magick", "~> 4.13"
+
+gem "pg_search", "~> 2.3"

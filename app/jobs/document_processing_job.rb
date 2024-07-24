@@ -162,6 +162,31 @@ class DocumentProcessingJob < ApplicationJob
 
     result = response['content'][0]['text']
     parsed_result = JSON.parse("{#{result}")
-    document.update(metadata: parsed_result)
+
+    # Find or create vendor
+    vendor = find_or_create_vendor(parsed_result['merchant'], document.account, document)
+
+    # Update document with metadata and vendor association
+    document.update(metadata: parsed_result, vendor:)
+  end
+
+  def find_or_create_vendor(merchant_data, account, document)
+    name = merchant_data['name']
+    address = merchant_data['address']
+
+    vendors = account.vendors.search(name, address)
+
+    if vendors.any?
+      vendors.first
+    else
+      account.vendors.create!(
+        name:,
+        address:,
+        city: merchant_data['city'],
+        country: merchant_data['country'],
+        metadata: merchant_data.except('name', 'address', 'city', 'country'),
+        sources: { document.id => Time.current }
+      )
+    end
   end
 end

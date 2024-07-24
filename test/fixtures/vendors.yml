@@ -2,14 +2,18 @@
 
 one:
   name: MyString
-  content: MyText
-  metadata:
+  address: MyText
+  city: MyString
+  country: MyString
+  metadata: 
+  sources: 
   account: one
-  owner: one
 
 two:
   name: MyString
-  content: MyText
-  metadata:
+  address: MyText
+  city: MyString
+  country: MyString
+  metadata: 
+  sources: 
   account: two
-  owner: two
