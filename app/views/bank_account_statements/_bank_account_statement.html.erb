@@ -1,0 +1,21 @@
+<div id="<%= dom_id bank_account_statement %>">
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Bank account</p>
+    <%= bank_account_statement.bank_account_id %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Statement date</p>
+    <%= bank_account_statement.statement_date %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">File</p>
+    <%= link_to bank_account_statement.file.filename, bank_account_statement.file if bank_account_statement.file.attached? %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Processed</p>
+    <%= bank_account_statement.processed %>
+  </div>
+  <% if action_name != "show" %>
+    <%= link_to "View this bank account statement", bank_account_bank_account_statement_path(bank_account_statement.bank_account, bank_account_statement), class: "btn btn-secondary" %>
+  <% end %>
+</div>

@@ -1,0 +1,36 @@
+<%= content_for :title, "Bank Accounts" %>
+<%= turbo_stream_from :bank_accounts %>
+
+<div class="container px-4 mx-auto my-8">
+  <div class="flex items-center justify-between mb-4">
+    <div>
+      <h1 class="h3">Bank Accounts</h1>
+
+      <div class="text-sm font-medium">
+        <span class="text-gray-500 dark:text-gray-300/75">Sort by:</span>
+        <%= sortable @bank_accounts, :name, "Name", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+        <%= sortable @bank_accounts, :number, "Number", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+        <%= sortable @bank_accounts, :balance, "Balance", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+        <%= sortable @bank_accounts, :account_type, "Account type", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+        <%= sortable @bank_accounts, :account_id, "Account", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+      </div>
+    </div>
+
+    <%= link_to t("scaffold.new.title", model: "Bank Account"), new_bank_account_path, class: "btn btn-secondary" %>
+  </div>
+
+  <%= tag.div id: ("bank_accounts" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6 space-y-8" do %>
+    <%= render partial: "bank_accounts/bank_account", collection: @bank_accounts, as: :bank_account, cached: true %>
+
+    <div class="hidden only:block text-center">
+      <p class="mb-4 h3">Create your first Bank Account</p>
+      <%= link_to t("scaffold.new.title", model: "Bank Account"), new_bank_account_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <% if @pagy.pages > 1 %>
+    <div class="my-6 text-center">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
+</div>

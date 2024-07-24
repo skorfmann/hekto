@@ -1,5 +1,9 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  resources :bank_accounts do
+    resources :bank_account_statements
+  end
+  resources :transactions
   resources :vendors
   resources :documents do
     collection do

@@ -14,6 +14,8 @@ class Account < ApplicationRecord
   has_many :addresses, as: :addressable, dependent: :destroy
   has_many :documents, dependent: :destroy
   has_many :vendors, dependent: :destroy
+  has_many :bank_accounts, dependent: :destroy
+  has_many :bank_account_statements, dependent: :destroy
 
   scope :personal, -> { where(personal: true) }
   scope :team, -> { where(personal: false) }

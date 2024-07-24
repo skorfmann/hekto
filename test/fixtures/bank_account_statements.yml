@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  bank_account: one
+  statement_date: 2024-07-24
+  processed: false
+
+two:
+  account: two
+  bank_account: two
+  statement_date: 2024-07-24
+  processed: false

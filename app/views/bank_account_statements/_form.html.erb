@@ -1,0 +1,44 @@
+<%= form_with(model: [@bank_account, @bank_account_statement], multipart: true) do |form| %>
+  <%= render "error_messages", resource: form.object %>
+
+  <div class="mb-6">
+    <%= form.label :file, class: "block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2" %>
+    <div class="relative">
+      <label for="bank_account_statement_file" class="cursor-pointer flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-500 dark:hover:border-indigo-400 transition duration-150 ease-in-out">
+        <svg class="w-6 h-6 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+        <span id="file-upload-text">Choose a file or drag and drop</span>
+      </label>
+      <%= form.file_field :file, id: "bank_account_statement_file", class: "absolute inset-0 w-full h-full opacity-0 cursor-pointer", required: true %>
+    </div>
+    <p id="file-name" class="mt-2 text-sm text-indigo-600 dark:text-indigo-400 font-medium hidden"></p>
+    <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">PDF, CSV, or Excel files up to 10MB</p>
+    <% if form.object.errors[:file].any? %>
+      <p class="mt-2 text-sm text-red-600 dark:text-red-400"><%= form.object.errors[:file].join(', ') %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit class: "w-full px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition duration-150 ease-in-out" %>
+  </div>
+<% end %>
+
+<%# <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('bank_account_statement_file');
+    const fileNameDisplay = document.getElementById('file-name');
+    const fileUploadText = document.getElementById('file-upload-text');
+
+    fileInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const fileName = this.files[0].name;
+        fileNameDisplay.textContent = `Selected file: ${fileName}`;
+        fileNameDisplay.classList.remove('hidden');
+        fileUploadText.textContent = 'Change file';
+      } else {
+        fileNameDisplay.textContent = '';
+        fileNameDisplay.classList.add('hidden');
+        fileUploadText.textContent = 'Choose a file or drag and drop';
+      }
+    });
+  });
+</script> %>

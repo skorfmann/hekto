@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_23_193043) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_24_201855) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -132,6 +132,28 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_23_193043) do
     t.datetime "updated_at", null: false
     t.index ["token"], name: "index_api_tokens_on_token", unique: true
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
+  end
+
+  create_table "bank_account_statements", force: :cascade do |t|
+    t.bigint "bank_account_id", null: false
+    t.bigint "account_id", null: false
+    t.date "statement_date"
+    t.boolean "processed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_bank_account_statements_on_account_id"
+    t.index ["bank_account_id"], name: "index_bank_account_statements_on_bank_account_id"
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "number"
+    t.decimal "balance"
+    t.string "account_type"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_bank_accounts_on_account_id"
   end
 
   create_table "connected_accounts", force: :cascade do |t|
@@ -437,6 +459,25 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_23_193043) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.decimal "amount"
+    t.string "description"
+    t.date "date"
+    t.string "external_id"
+    t.bigint "account_id", null: false
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "bank_account_id", null: false
+    t.bigint "bank_account_statement_id"
+    t.string "counterparty_name"
+    t.string "currency"
+    t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["bank_account_id"], name: "index_transactions_on_bank_account_id"
+    t.index ["bank_account_statement_id"], name: "index_transactions_on_bank_account_statement_id"
+    t.index ["document_id"], name: "index_transactions_on_document_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -503,6 +544,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_23_193043) do
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "bank_account_statements", "accounts"
+  add_foreign_key "bank_account_statements", "bank_accounts"
+  add_foreign_key "bank_accounts", "accounts"
   add_foreign_key "documents", "accounts"
   add_foreign_key "documents", "users"
   add_foreign_key "documents", "vendors"
@@ -515,5 +559,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_23_193043) do
   add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
+  add_foreign_key "transactions", "accounts"
+  add_foreign_key "transactions", "bank_account_statements"
+  add_foreign_key "transactions", "bank_accounts"
+  add_foreign_key "transactions", "documents"
   add_foreign_key "vendors", "accounts"
 end

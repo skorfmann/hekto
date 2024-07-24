@@ -1,0 +1,25 @@
+<div id="<%= dom_id bank_account %>">
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Name</p>
+    <%= bank_account.name %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Number</p>
+    <%= bank_account.number %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Balance</p>
+    <%= bank_account.balance %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Account type</p>
+    <%= bank_account.account_type %>
+  </div>
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Account</p>
+    <%= bank_account.account_id %>
+  </div>
+  <% if action_name != "show" %>
+    <%= link_to "View this bank account", bank_account, class: "btn btn-secondary" %>
+  <% end %>
+</div>

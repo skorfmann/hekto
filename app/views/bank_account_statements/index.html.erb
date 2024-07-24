@@ -1,0 +1,35 @@
+<%= content_for :title, "Bank Account Statements" %>
+<%= turbo_stream_from :bank_account_statements %>
+
+<div class="container px-4 mx-auto my-8">
+  <div class="flex items-center justify-between mb-4">
+    <div>
+      <h1 class="h3">Bank Account Statements</h1>
+
+      <div class="text-sm font-medium">
+        <span class="text-gray-500 dark:text-gray-300/75">Sort by:</span>
+        <%= sortable @bank_account_statements, :bank_account_id, "Bank account", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+        <%= sortable @bank_account_statements, :statement_date, "Statement date", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+        <%= sortable @bank_account_statements, :file, "File", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+        <%= sortable @bank_account_statements, :processed, "Processed", class: "text-gray-700 dark:text-gray-300 mr-1" %>
+      </div>
+    </div>
+
+    <%= link_to "New Bank Account Statement", new_bank_account_bank_account_statement_path(@bank_account), class: "btn btn-secondary" %>
+  </div>
+
+  <%= tag.div id: ("bank_account_statements" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6 space-y-8" do %>
+    <%= render partial: "bank_account_statements/bank_account_statement", collection: @bank_account_statements, as: :bank_account_statement, cached: true %>
+
+    <div class="hidden only:block text-center">
+      <p class="mb-4 h3">Create your first Bank Account Statement</p>
+      <%= link_to "New Bank Account Statement", new_bank_account_bank_account_statement_path(@bank_account), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <% if @pagy.pages > 1 %>
+    <div class="my-6 text-center">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
+</div>
