@@ -16,6 +16,7 @@ class Account < ApplicationRecord
   has_many :vendors, dependent: :destroy
   has_many :bank_accounts, dependent: :destroy
   has_many :bank_account_statements, dependent: :destroy
+  has_many :transactions, dependent: :destroy
 
   scope :personal, -> { where(personal: true) }
   scope :team, -> { where(personal: false) }

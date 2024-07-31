@@ -84,3 +84,12 @@ gem 'pg_search', '~> 2.3'
 gem 'csv', '~> 3.3'
 
 gem 'smarter_csv', '~> 1.12'
+
+gem "money", "~> 6.19"
+gem "money-rails", "~> 1.15"
+
+gem "eu_central_bank", "~> 1.7"
+
+gem "money-openexchangerates-bank", "~> 0.2.0"
+
+gem "open_exchange_rates", "~> 0.6.1"
