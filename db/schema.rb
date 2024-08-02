@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_26_104054) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_01_134048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -169,6 +169,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_26_104054) do
     t.string "access_token_secret"
     t.string "owner_type"
     t.index ["owner_id", "owner_type"], name: "index_connected_accounts_on_owner_id_and_owner_type"
+  end
+
+  create_table "document_transitions", force: :cascade do |t|
+    t.string "to_state", null: false
+    t.jsonb "metadata", default: {}
+    t.integer "sort_key", null: false
+    t.integer "document_id", null: false
+    t.boolean "most_recent", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id", "most_recent"], name: "index_document_transitions_parent_most_recent", unique: true, where: "most_recent"
+    t.index ["document_id", "sort_key"], name: "index_document_transitions_parent_sort", unique: true
   end
 
   create_table "documents", force: :cascade do |t|
@@ -561,6 +573,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_26_104054) do
   add_foreign_key "bank_account_statements", "accounts"
   add_foreign_key "bank_account_statements", "bank_accounts"
   add_foreign_key "bank_accounts", "accounts"
+  add_foreign_key "document_transitions", "documents"
   add_foreign_key "documents", "accounts"
   add_foreign_key "documents", "users"
   add_foreign_key "documents", "vendors"

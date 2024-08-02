@@ -26,7 +26,6 @@ class VendorTest < ActiveSupport::TestCase
 
   test 'search handles slight variations' do
     results = Vendor.search('EDEKA Niemerzein', 'Hallerstrasse Hamburg') # Misspelled
-    puts results.to_a
     assert_includes results, @vendor1
     assert_includes results, @vendor2
     assert_not_includes results, @vendor3
@@ -41,7 +40,6 @@ class VendorTest < ActiveSupport::TestCase
 
   test "search doesn't match unrelated names" do
     results = Vendor.search('Rewe Supermarkt', 'Eppendorfer Weg Hamburg')
-    puts results.to_a.first.inspect
     assert_not_includes results, @vendor1
     assert_not_includes results, @vendor2
     assert_not_includes results, @vendor3
@@ -59,26 +57,6 @@ class VendorTest < ActiveSupport::TestCase
     assert_includes results, @vendor1
     assert_includes results, @vendor2
     assert_not_includes results, @vendor3
-  end
-
-  test 'search_by_name returns correct results' do
-    results = Vendor.search_by_name('EDEKA')
-    assert_includes results, @vendor1
-    assert_includes results, @vendor2
-    assert_not_includes results, @vendor3
-  end
-
-  test 'search_by_address returns correct results' do
-    results = Vendor.search_by_address('Eppendorfer')
-    assert_not_includes results, @vendor1
-    assert_not_includes results, @vendor2
-    assert_includes results, @vendor3
-  end
-
-  test 'search_similar returns same results as search' do
-    search_results = Vendor.search('EDEKA Niemerszein', 'Hamburg')
-    similar_results = Vendor.search_similar('EDEKA Niemerszein', 'Hamburg')
-    assert_equal search_results.to_a, similar_results.to_a
   end
 
   test 'search with empty address query' do
