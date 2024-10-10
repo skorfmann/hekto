@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: action_text_embeds
+#
+#  id         :bigint           not null, primary key
+#  url        :string
+#  fields     :jsonb
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class ActionText::Embed < ApplicationRecord
   include ActionText::Attachable
 

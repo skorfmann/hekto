@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: account_invitations
+#
+#  id            :bigint           not null, primary key
+#  account_id    :bigint           not null
+#  invited_by_id :bigint
+#  token         :string           not null
+#  name          :string           not null
+#  email         :string           not null
+#  roles         :jsonb            not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 one:
   account: company
   invited_by: one

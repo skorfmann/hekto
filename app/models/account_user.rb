@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: account_users
+#
+#  id         :bigint           not null, primary key
+#  account_id :bigint
+#  user_id    :bigint
+#  roles      :jsonb            not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class AccountUser < ApplicationRecord
   # Add account roles to this line
   # Do NOT to use any reserved words like `user` or `account`

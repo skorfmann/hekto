@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id                  :bigint           not null, primary key
+#  name                :string           not null
+#  owner_id            :bigint
+#  personal            :boolean          default(FALSE)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  extra_billing_info  :text
+#  domain              :string
+#  subdomain           :string
+#  billing_email       :string
+#  account_users_count :integer          default(0)
+#
 one:
   owner: one
   name: "User One"

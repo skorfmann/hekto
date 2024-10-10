@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: vendors
+#
+#  id             :bigint           not null, primary key
+#  name           :string
+#  address        :text
+#  city           :string
+#  country        :string
+#  metadata       :jsonb
+#  sources        :jsonb
+#  account_id     :bigint           not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  name_vector    :tsvector
+#  address_vector :tsvector
+#
 class Vendor < ApplicationRecord
   broadcasts_refreshes
   belongs_to :account

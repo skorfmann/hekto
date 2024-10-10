@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: inbound_webhooks
+#
+#  id         :bigint           not null, primary key
+#  status     :integer          default("pending"), not null
+#  body       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class InboundWebhook < ApplicationRecord
   cattr_accessor :incinerate_after, default: 7.days
   enum :status, %i[pending processing processed failed]

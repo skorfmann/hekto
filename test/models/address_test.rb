@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id               :bigint           not null, primary key
+#  addressable_type :string           not null
+#  addressable_id   :bigint           not null
+#  address_type     :integer
+#  line1            :string
+#  line2            :string
+#  city             :string
+#  state            :string
+#  country          :string
+#  postal_code      :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 require "test_helper"
 
 class AddressTest < ActiveSupport::TestCase
