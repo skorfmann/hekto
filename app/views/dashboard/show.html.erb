@@ -1,5 +1,6 @@
 <div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-6"><%= t(".title") %></h1>
+  <h1 class="text-2xl font-bold mb-2"><%= t(".title") %></h1>
+  <h2 class="text-xl text-gray-600 mb-6"><%= @account_name %></h2>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
     <div class="bg-white p-4 rounded shadow">
@@ -22,7 +23,7 @@
       <ul class="divide-y">
         <% @recent_documents.each do |document| %>
           <li class="py-2">
-            <%= link_to document.name || "Document #{document.id}", document_path(document), class: "text-blue-600 hover:underline" %>
+            <%= link_to(document.try(:name) || document.try(:title) || "Document #{document.id}", document_path(document), class: "text-blue-600 hover:underline") %>
             <span class="text-gray-500 text-sm ml-2"><%= l(document.created_at, format: :short) %></span>
           </li>
         <% end %>
