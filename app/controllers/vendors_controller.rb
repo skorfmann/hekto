@@ -1,9 +1,10 @@
 class VendorsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
 
   # GET /vendors
   def index
-    @pagy, @vendors = pagy(Vendor.sort_by_params(params[:sort], sort_direction))
+    @pagy, @vendors = pagy(current_account.vendors.sort_by_params(params[:sort], sort_direction))
 
     # Uncomment to authorize with Pundit
     # authorize @vendors
@@ -27,7 +28,7 @@ class VendorsController < ApplicationController
 
   # POST /vendors or /vendors.json
   def create
-    @vendor = Vendor.new(vendor_params)
+    @vendor = current_account.vendors.new(vendor_params)
 
     # Uncomment to authorize with Pundit
     # authorize @vendor
@@ -69,7 +70,7 @@ class VendorsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_vendor
-    @vendor = Vendor.find(params[:id])
+    @vendor = current_account.vendors.find(params[:id])
 
     # Uncomment to authorize with Pundit
     # authorize @vendor
@@ -79,7 +80,7 @@ class VendorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def vendor_params
-    params.require(:vendor).permit(:name, :address, :city, :country, :metadata, :sources, :account_id)
+    params.require(:vendor).permit(:name, :address, :city, :country, :metadata, :sources)
 
     # Uncomment to use Pundit permitted attributes
     # params.require(:vendor).permit(policy(@vendor).permitted_attributes)

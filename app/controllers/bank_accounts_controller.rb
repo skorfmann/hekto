@@ -1,4 +1,5 @@
 class BankAccountsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_bank_account, only: %i[show edit update destroy]
 
   # GET /bank_accounts
@@ -72,9 +73,6 @@ class BankAccountsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_bank_account
     @bank_account = current_account.bank_accounts.find(params[:id])
-
-    # Uncomment to authorize with Pundit
-    # authorize @bank_account
   rescue ActiveRecord::RecordNotFound
     redirect_to bank_accounts_path
   end

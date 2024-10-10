@@ -1,9 +1,10 @@
 class TransactionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   # GET /transactions
   def index
-    @pagy, @transactions = pagy(Transaction.sort_by_params(params[:sort], sort_direction))
+    @pagy, @transactions = pagy(current_account.transactions.sort_by_params(params[:sort], sort_direction))
 
     # Uncomment to authorize with Pundit
     # authorize @transactions
@@ -15,7 +16,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/new
   def new
-    @transaction = Transaction.new
+    @transaction = current_account.transactions.new
 
     # Uncomment to authorize with Pundit
     # authorize @transaction
@@ -27,7 +28,7 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = current_account.transactions.new(transaction_params)
 
     # Uncomment to authorize with Pundit
     # authorize @transaction
@@ -69,7 +70,7 @@ class TransactionsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_transaction
-    @transaction = Transaction.find(params[:id])
+    @transaction = current_account.transactions.find(params[:id])
 
     # Uncomment to authorize with Pundit
     # authorize @transaction

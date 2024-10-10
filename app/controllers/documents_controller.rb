@@ -1,10 +1,11 @@
 class DocumentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_document, only: %i[show edit update destroy]
 
   # GET /documents
   def index
-    @pagy, @documents = pagy(Document.order(created_at: :desc))
-    @documents_by_month = Document.with_metadata.grouped_by_month
+    @pagy, @documents = pagy(current_account.documents.order(created_at: :desc))
+    @documents_by_month = current_account.documents.with_metadata.grouped_by_month
 
     # Uncomment to authorize with Pundit
     # authorize @documents
