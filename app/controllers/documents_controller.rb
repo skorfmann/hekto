@@ -4,8 +4,14 @@ class DocumentsController < ApplicationController
 
   # GET /documents
   def index
-    @pagy, @documents = pagy(current_account.documents.order(created_at: :desc))
-    @documents_by_month = current_account.documents.with_metadata.grouped_by_month
+    items_per_page = 30 # Adjust as needed
+    @pagy_by_month, documents_by_month = pagy(
+      current_account.documents.with_metadata,
+      page_param: :page_by_month,
+      items: items_per_page
+    )
+
+    @documents_by_month = documents_by_month.paginated_grouped_by_month(@pagy_by_month.page, items_per_page)
 
     # Uncomment to authorize with Pundit
     # authorize @documents

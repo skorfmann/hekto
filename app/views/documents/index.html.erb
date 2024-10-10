@@ -5,27 +5,17 @@
   <div class="flex items-center justify-between mb-4">
     <div>
       <h1 class="h3">Documents</h1>
-
-      <div class="text-sm font-medium">
-        <span class="text-gray-500 dark:text-gray-300/75">Sort by:</span>
-        <%= sortable @documents, :name, "Name", class: "text-gray-700 dark:text-gray-300 mr-1" %>
-        <%= sortable @documents, :content, "Content", class: "text-gray-700 dark:text-gray-300 mr-1" %>
-        <%= sortable @documents, :metadata, "Metadata", class: "text-gray-700 dark:text-gray-300 mr-1" %>
-        <%= sortable @documents, :account_id, "Account", class: "text-gray-700 dark:text-gray-300 mr-1" %>
-        <%= sortable @documents, :user_id, "User", class: "text-gray-700 dark:text-gray-300 mr-1" %>
-      </div>
     </div>
-
     <div class="flex space-x-2">
       <%= link_to t("scaffold.new.title", model: "Document"), new_document_path, class: "btn btn-secondary" %>
       <%= link_to "Batch Upload", new_batch_upload_documents_path, class: "btn btn-primary" %>
     </div>
   </div>
 
-  <%= tag.div id: ("documents" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6" do %>
+  <%= tag.div id: ("documents_by_month" if @pagy_by_month.page == 1), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6" do %>
     <% if @documents_by_month.any? %>
       <% @documents_by_month.each do |month, documents| %>
-        <h2 class="text-xl font-semibold mb-4"><%= month.strftime("%B %Y") %></h2>
+        <h2 class="text-xl font-semibold mb-4"><%= month&.strftime("%B %Y") || "No Date" %></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <%= render partial: "documents/document", collection: documents, as: :document, cached: true %>
         </div>
@@ -38,9 +28,9 @@
     <% end %>
   <% end %>
 
-  <% if @pagy.pages > 1 %>
+  <% if @pagy_by_month.pages > 1 %>
     <div class="my-6 text-center">
-      <%== pagy_nav(@pagy) %>
+      <%== pagy_nav(@pagy_by_month) %>
     </div>
   <% end %>
 </div>

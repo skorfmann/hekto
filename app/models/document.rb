@@ -80,10 +80,17 @@ class Document < ApplicationRecord
   has_many :bank_transactions, through: :transaction_reconciliations, source: :bank_transaction
 
   scope :grouped_by_month, lambda {
-    select("*,
-            (metadata->>'date')::date AS document_date")
-      .order('document_date DESC NULLS LAST')
-      .group_by { |doc| doc.document_date&.beginning_of_month }
+    select("DATE_TRUNC('month', (metadata->>'date')::date) AS month, *")
+      .order('month DESC')
+      .group_by { |doc| doc.month }
+  }
+
+  scope :paginated_grouped_by_month, lambda { |page, items_per_page|
+    select("DATE_TRUNC('month', (metadata->>'date')::date) AS month, *")
+      .order('month DESC')
+      .page(page)
+      .per(items_per_page)
+      .group_by { |doc| doc.month }
   }
 
   scope :with_metadata, -> { where.not(metadata: nil) }
