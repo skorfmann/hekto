@@ -233,6 +233,13 @@ de:
     terms:
       title: "Nutzungsbedingungen"
 
+    index:
+      welcome: "Willkommen bei Hekto"
+      tagline: "Das Betriebssystem für Geschäftsdokumente"
+      description: "Verabschieden Sie sich von mühsamer Steuer- und Buchhaltungsvorbereitung. Erleben Sie stressfreies Finanzmanagement mit Hektos intuitivem Dokumentenorganisationssystem."
+      get_started: "Loslegen"
+      learn_more: "Mehr erfahren"
+
   subscriptions:
     created: "Vielen Dank für Ihre Anmeldung!"
     resumed: "Ihr Abonnement wurde wieder aufgenommen."

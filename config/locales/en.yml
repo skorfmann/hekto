@@ -238,6 +238,13 @@ en:
     terms:
       title: "Terms Of Service"
 
+    index:
+      welcome: "Welcome to Hekto"
+      tagline: "The Business Document Operating System"
+      description: "Say goodbye to tedious tax and accounting prep work. Experience stress-free financial management with Hekto's intuitive document organization system."
+      get_started: "Get Started"
+      learn_more: "Learn More"
+
   subscriptions:
     created: "Thanks for subscribing!"
     resumed: "Your subscription has been resumed."
