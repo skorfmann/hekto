@@ -95,3 +95,5 @@ gem "money-openexchangerates-bank", "~> 0.2.0"
 gem "open_exchange_rates", "~> 0.6.1"
 
 gem "statesman", "~> 12.1"
+
+gem "sqlite3", "~> 2.0", :group => :dev
