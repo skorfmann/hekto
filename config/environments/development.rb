@@ -89,4 +89,6 @@ Rails.application.configure do
   # end
 
   config.active_job.queue_adapter = Jumpstart.config.queue_adapter
+
+  config.assets.check_precompiled_asset = false
 end

@@ -1,0 +1,6 @@
+This is a Rails 8 application build on top of jumpstart pro.
+It's using tailwindcss.
+
+It's a multi tenant app, with users which can belong to multiple accounts through roles (admin, user).
+The controller helper methods: current_user, current_account - All model access should be scoped by one of theses (usually account)
+

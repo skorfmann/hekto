@@ -74,7 +74,6 @@ gem "sucker_punch" if Jumpstart.config.background_job_processor == "sucker_punch
 gem "good_job" if Jumpstart.config.background_job_processor == "good_job"
 
 if Jumpstart.config.background_job_processor == "solid_queue"
-  gem "solid_queue"
   gem "mission_control-jobs"
 end
 
