@@ -3,9 +3,7 @@ require 'active_support/core_ext/integer/time'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # In the development environment your application's code is reloaded any time
-  # it changes. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
+  # Make code changes take affect immediately without server restart.
   config.enable_reloading = true
 
   # Do not eager load code on boot.
@@ -17,19 +15,17 @@ Rails.application.configure do
   # Enable server timing.
   config.server_timing = true
 
-  # Enable/disable caching. By default caching is disabled.
-  # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  # Run rails dev:cache to toggle Action Controller caching.
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
-
-    config.cache_store = :memory_store
-    config.public_file_server.headers = { 'Cache-Control' => "public, max-age=#{2.days.to_i}" }
+    config.public_file_server.headers = {"cache-control" => "public, max-age=#{2.days.to_i}"}
   else
     config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
   end
+
+  # Change to :null_store to avoid any caching.
+  config.cache_store = :memory_store
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
@@ -37,18 +33,14 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # Make template changes take affect immediately.
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'lvh.me', port: ENV.fetch('PORT', 3000).to_i }
+  # Set localhost to be used by links generated in mailer templates.
+  config.action_mailer.default_url_options = {host: "lvh.me", port: ENV.fetch("PORT", 3000).to_i}
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
-
-  # Raise exceptions for disallowed deprecations.
-  config.active_support.disallowed_deprecation = :raise
-
-  # Tell Active Support which deprecation messages to disallow.
-  config.active_support.disallowed_deprecation_warnings = []
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
@@ -56,15 +48,11 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # Append comments with runtime information tags to SQL queries in logs.
+  config.active_record.query_log_tags_enabled = true
+
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
-
-  # Set Active Job logger to :info level
-  config.active_job.logger = ActiveSupport::Logger.new($stdout)
-  config.active_job.logger.level = :info
-
-  # Suppress logger output for asset requests.
-  config.assets.quiet = true
 
   # Raises error for missing translations.
   config.i18n.raise_on_missing_translations = true
@@ -84,8 +72,8 @@ Rails.application.configure do
   # Uncomment the line below to enable strict loading across all models. More granular control can be applied at the model or association level.
   # config.active_record.strict_loading_by_default = true
 
-  # Deliver emails to Letter Opener for development
-  config.action_mailer.delivery_method = :letter_opener_web
+  # Deliver emails to Mailbin for development
+  config.action_mailer.delivery_method = :mailbin
 
   # Allow accessing localhost on any domain. Important for testing multi-tenant apps.
   config.hosts = nil
@@ -93,12 +81,12 @@ Rails.application.configure do
   # You may need to set to include the correct URLs from Turbo, etc
   # config.action_controller.default_url_options = {host: "lvh.me", port: ENV.fetch("PORT", 3000).to_i}
 
-  config.generators.after_generate do |files|
-    parsable_files = files.filter { |file| file.end_with?('.rb') }
-    unless parsable_files.empty?
-      # system("bundle exec standardrb --fix #{parsable_files.shelljoin}", exception: true)
-    end
-  end
+  # config.generators.after_generate do |files|
+  #   parsable_files = files.filter { |file| file.end_with?('.rb') }
+  #   unless parsable_files.empty?
+  #     # system("bundle exec standardrb --fix #{parsable_files.shelljoin}", exception: true)
+  #   end
+  # end
 
   config.active_job.queue_adapter = Jumpstart.config.queue_adapter
 end

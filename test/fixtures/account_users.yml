@@ -27,3 +27,9 @@ invited_user:
 fake_processor:
   account: fake_processor
   user: fake_processor
+
+subscribed:
+  user: subscribed
+  account: subscribed
+  roles:
+    admin: true

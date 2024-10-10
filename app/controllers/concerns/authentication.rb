@@ -4,6 +4,9 @@ module Authentication
   included do
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+    delegate :account, to: Current, prefix: :current
+    helper_method :current_account
+
     impersonates :user
     set_referral_cookie if defined?(::Refer)
   end
@@ -32,12 +35,12 @@ module Authentication
   end
 
   def require_current_account_admin
-    redirect_to root_path, alert: t("must_be_an_admin") unless current_account_admin?
+    redirect_to root_path, alert: t("must_be_an_admin") unless Current.account_admin?
   end
 
   private
 
   def require_account
-    redirect_to new_user_registration_path unless current_account
+    redirect_to new_user_registration_path unless Current.account
   end
 end

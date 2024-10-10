@@ -57,7 +57,7 @@ function insertConfirmModal(message, element, button) {
   return modal
 }
 
-Turbo.setConfirmMethod((message, element, button) => {
+Turbo.config.forms.confirm = (message, element, button) => {
   let dialog = insertConfirmModal(message, element, button)
   dialog.showModal()
 
@@ -66,4 +66,4 @@ Turbo.setConfirmMethod((message, element, button) => {
       resolve(dialog.returnValue == "confirm")
     }, { once: true })
   })
-})
+}

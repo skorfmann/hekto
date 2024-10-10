@@ -14,7 +14,7 @@ module Authorization
 
   # Use AccountUser since it determines the roles for the current Account
   def pundit_user
-    current_account_user
+    Current.account_user
   end
 
   private

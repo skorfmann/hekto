@@ -18,10 +18,10 @@
 verify_signatures: false
 
 PreCommit:
-  StandardRB:
+  RuboCop:
     enabled: true
     required: true
-    command: ['bundle', 'exec', 'standardrb']
+    command: ['bundle', 'exec', 'rubocop', '-f', 'simple']
   ErbLint:
     enabled: true
     required: true

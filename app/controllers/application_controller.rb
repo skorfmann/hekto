@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Authentication
   include Authorization
-  include CurrentHelper
   include DeviceFormat
   include Pagy::Backend
   include SetCurrentRequestDetails

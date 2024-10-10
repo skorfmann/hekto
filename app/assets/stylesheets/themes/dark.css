@@ -1,0 +1,101 @@
+:root.dark,
+.dark {
+  /*Primary*/
+  --bg-primary: theme('colors.primary.700');
+  --bg-primary-hover: theme('colors.primary.600');
+  --text-on-primary: theme('colors.white');
+  --border-primary: theme('colors.primary.500');
+  --border-primary-hover: theme('colors.primary.400');
+  --text-primary: theme('colors.primary.300');
+  --text-primary-hover: theme('colors.primary.400');
+
+  /*Secondary*/
+  --bg-secondary: theme('colors.secondary.900');
+  --text-on-secondary: theme('colors.secondary.50');
+  --bg-secondary-hover: theme('colors.secondary.800');
+  --text-on-secondary-hover: theme('colors.secondary.50');
+  --border-secondary: theme('colors.secondary.700');
+
+  /*Danger*/
+  --bg-danger: theme('colors.danger.800');
+  --bg-danger-hover: theme('colors.danger.700');
+  --text-on-danger: theme('colors.white');
+  --border-danger: theme('colors.danger.600');
+  --border-danger-focus: theme('colors.danger.600');
+  --text-danger: theme('colors.danger.400');
+  --bg-danger-secondary: theme('colors.danger.950');
+  --text-on-danger-secondary: theme('colors.danger.200');
+  --icon-on-danger-secondary: theme('colors.danger.400');
+
+  /*Success*/
+  --bg-success: theme('colors.success.800');
+  --bg-success-hover: theme('colors.success.700');
+  --text-on-success: theme('colors.white');
+  --border-success: theme('colors.success.400');
+  --border-success-focus: theme('colors.success.700');
+  --text-success: theme('colors.success.300');
+  --bg-success-secondary: theme('colors.success.950');
+  --text-on-success-secondary: theme('colors.success.100');
+  --icon-on-success-secondary: theme('colors.success.400');
+
+  /*Info*/
+  --bg-info-secondary: theme('colors.info.950');
+  --text-on-info-secondary: theme('colors.info.100');
+  --icon-on-info-secondary: theme('colors.info.300');
+
+  /*Warning*/
+  --bg-warning-secondary: theme('colors.warning.950');
+  --text-on-warning-secondary: theme('colors.warning.100');
+  --icon-on-warning-secondary: theme('colors.warning.500');
+
+  /*Accent*/
+  --bg-accent: theme('colors.accent.700');
+  --text-on-accent: theme('colors.white');
+  --border-accent: theme('colors.accent.500');
+  --text-accent: theme('colors.accent.400');
+
+  /*Light*/
+  --bg-light: theme('colors.light.200');
+  --bg-light-hover: theme('colors.light.300');
+  --text-on-light: theme('colors.light.900');
+  --text-on-light-outline: theme('colors.light.100');
+  --border-light: theme('colors.light.300');
+
+  /*Dark*/
+  --bg-dark: theme('colors.dark.950');
+  --bg-dark-secondary: theme('colors.dark.400');
+  --bg-dark-hover: theme('colors.dark.900');
+  --text-on-dark: theme('colors.white');
+  --text-on-dark-outline: theme('colors.dark.200');
+  --border-dark: theme('colors.dark.700');
+  --border-dark-focus: theme('colors.dark.500');
+
+  /*Disabled*/
+  --bg-disabled: theme('colors.disabled.600');
+  --bg-disabled-selected: theme('colors.disabled.700');
+  --text-on-disabled-selected: theme('colors.disabled.200');
+  --border-disabled: theme('colors.disabled.500');
+  --bg-disabled-secondary: theme('colors.disabled.800');
+  --icon-disabled: theme('colors.disabled.400');
+
+  /*Base*/
+  --base-text: theme('colors.gray.100');
+  --base-text-secondary: theme('colors.gray.200');
+  --base-text-tertiary: theme('colors.gray.400');
+  --base-text-disabled: theme('colors.gray.600');
+  --base-icon: theme('colors.gray.400');
+  --base-bg-backdrop: theme('colors.gray.300');
+  --base-bg-highest: theme('colors.gray.500');
+  --base-bg-high: theme('colors.gray.600');
+  --base-bg-base: theme('colors.gray.700');
+  --base-bg-low: theme('colors.gray.800');
+  --base-bg-lowest: theme('colors.gray.900');
+  --base-border-primary: theme('colors.gray.400');
+  --base-border-secondary: theme('colors.gray.500');
+  --base-border-tertiary: theme('colors.gray.600');
+  --base-border-focus: theme('colors.primary.800');
+  --base-bg-selected: theme('colors.primary.900');
+  --base-bg-hover: theme('colors.primary.950');
+  --base-bg-tooltip: theme('colors.gray.700');
+  --base-text-on-tooltip: theme('colors.gray.50');
+}

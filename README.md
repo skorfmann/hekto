@@ -9,7 +9,6 @@ You'll need the following installed to run the template successfully:
 * Ruby 3.2+
 * Node.js v20+
 * PostgreSQL 12+
-* Redis - For ActionCable support (and Sidekiq, caching, etc)
 * Libvips or Imagemagick - `brew install vips imagemagick`
 * [Overmind](https://github.com/DarthSim/overmind) or Foreman - `brew install tmux overmind` or `gem install foreman` - helps run all your processes in development
 * [Stripe CLI](https://stripe.com/docs/stripe-cli) for Stripe webhooks in development - `brew install stripe/stripe-cli/stripe`

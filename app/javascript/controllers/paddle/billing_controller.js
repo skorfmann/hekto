@@ -20,7 +20,7 @@ export default class extends Controller {
     this.element.classList.add(this.classValue)
 
     Paddle.Environment.set(this.environmentValue)
-    Paddle.Setup({
+    Paddle.Initialize({
       token: this.clientTokenValue,
       eventCallback: this.callback.bind(this),
       checkout: { settings: this.settings }
@@ -52,7 +52,7 @@ export default class extends Controller {
     }
 
     if (event.name == "checkout.completed") {
-      Turbo.visit(`/subscriptions/paddle_billing?user_id=${event.data.customer.id}&transaction_id=${event.data.transaction_id}`)
+      Turbo.visit(`/subscriptions/paddle_billing?user_id=${event.data.customer.id}&paddle_billing_transaction_id=${event.data.transaction_id}`)
     }
   }
 

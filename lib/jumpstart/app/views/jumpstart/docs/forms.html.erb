@@ -2,7 +2,7 @@
 
 <p>We've included the <%= link_to "TailwindCSS Forms", "https://github.com/tailwindlabs/tailwindcss-forms", target: :_blank %> plugin to provide default styling for form fields.</p>
 
-<%= h3_with_anchor "Block Layout" %>
+<%= h2_with_anchor "Block Layout" %>
 <%= render "jumpstart/docs/snippet" do %>
   <form action="#">
 
@@ -34,13 +34,19 @@
 
     <div class="form-group">
       <p class="label">Example avatar upload</p>
-      <input type="file" id="avatar" name="avatar" class="input-file" data-multiple-caption="{count} files selected">
-      <label for="avatar">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
-          <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-        </svg>
-        <span>Upload Avatar</span>
-      </label>
+
+      <div class="file-input-group">
+        <p class="label">
+          Avatar
+        </p>
+        <label for="avatar" class="btn btn-tertiary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
+          </svg>
+          <span>Upload Avatar</span>
+        </label>
+        <input type="file" id="avatar" name="avatar" data-multiple-caption="{count} files selected">
+      </div>
     </div>
 
     <div class="form-group">
@@ -55,7 +61,7 @@
 
     <div class="form-group">
       <label for="industries">Industries</label>
-      <select name="industries" class="select" multiple>
+      <select name="industries" multiple>
         <option value="" selected>Choose an industry</option>
         <option value="tech">Tech</option>
         <option value="marketing">Marketing</option>
@@ -65,50 +71,213 @@
 
     <div class="form-group">
       <label for="industry">Industry (Disabled)</label>
-      <select name="industry" class="select" disabled>
+      <select name="industry" disabled>
         <option value="tech" selected>Tech</option>
       </select>
     </div>
+  </form>
+<% end %>
 
-    <div class="form-group flex flex-col gap-1">
-      <div class="flex items-center gap-x-3">
-        <input type="checkbox" id="checked-checkbox" class="form-checkbox" checked>
-        <label for="checked-checkbox" class="inline-block">Styled checkbox</label>
-      </div>
+<%= h2_with_anchor "Checkboxes" %>
+<%= render "jumpstart/docs/snippet" do %>
+<form action="#" class="space-y-4">
+  <fieldset>
+    <legend class="text-sm font-bold">Checked and Unchecked</legend>
 
-      <div class="flex items-center gap-x-3">
-        <input type="checkbox" id="checkbox" class="form-checkbox">
-        <label for="checkbox" class="inline-block">Styled checkbox</label>
-      </div>
-
-      <div class="flex items-center gap-x-3">
-        <input type="checkbox" id="disabled-checkbox" class="form-checkbox" disabled>
-        <label for="disabled-checkbox" class="inline-block">Disabled checkbox</label>
-      </div>
-
-      <div class="flex items-center gap-x-3 switch">
-        <input type="checkbox" id="switch-checkbox" class="form-checkbox">
-        <label for="switch-checkbox" class="inline-block">Toggle switch</label>
-      </div>
+    <div class="form-picker-group">
+      <input type="checkbox" id="checkbox-1" checked>
+      <label for="checkbox-1">Styled checkbox</label>
     </div>
 
-    <div class="form-group flex flex-col gap-1">
-      <div class="flex items-center gap-x-3">
-        <input name="radio" type="radio" id="checked-radio" class="form-radio" checked>
-        <label for="checked-radio" class="inline-block">Styled radio</label>
-      </div>
+    <div class="form-picker-group">
+      <input type="checkbox" id="checkbox-2">
+      <label for="checkbox-2">Styled checkbox</label>
+    </div>
+  </fieldset>
 
-      <div class="flex items-center gap-x-3">
-        <input name="radio" type="radio" id="radio" class="form-radio">
-        <label for="radio" class="inline-block">Styled radio</label>
-      </div>
+  <fieldset>
+    <legend class="text-sm font-bold">Disabled</legend>
 
-      <div class="flex items-center gap-x-3">
-        <input name="radio" type="radio" id="disabled-radio" class="form-radio" disabled>
-        <label for="disabled-radio" class="inline-block">Disabled radio</label>
+    <div class="form-picker-group">
+      <input type="checkbox" id="checkbox-3" disabled>
+      <label for="checkbox-3">Disabled checkbox</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="text-sm font-bold">Checked and Disabled</legend>
+
+    <div class="form-picker-group">
+      <input type="checkbox" id="checkbox-4" checked disabled>
+      <label for="checkbox-4">Styled checkbox</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="text-sm font-bold">With Hint Text</legend>
+
+    <div class="form-picker-group">
+      <input type="checkbox" id="checkbox-5">
+      <div>
+        <label for="checkbox-5">Label text</label>
+        <p class="form-hint">Hint text</p>
       </div>
     </div>
+  </fieldset>
 
+  <fieldset>
+    <legend class="text-sm font-bold">Labels First</legend>
+
+    <div class="form-picker-group">
+      <label for="checkbox-6">Styled checkbox</label>
+      <input type="checkbox" id="checkbox-6">
+    </div>
+
+    <div class="form-picker-group">
+      <div>
+        <label for="checkbox-7">Label text</label>
+        <p class="form-hint">Hint text</p>
+      </div>
+      <input type="checkbox" id="checkbox-7">
+    </div>
+  </fieldset>
+</form>
+<% end %>
+
+<%= h2_with_anchor "Switches/Toggles" %>
+<%= render "jumpstart/docs/snippet" do %>
+<form action="#" class="space-y-4">
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Checked and Unchecked</legend>
+
+    <div class="form-picker-group switch">
+      <input type="checkbox" id="switch-checkbox-1" checked>
+      <label for="switch-checkbox-1">Toggle switch</label>
+    </div>
+
+    <div class="form-picker-group switch">
+      <input type="checkbox" id="switch-checkbox-2">
+      <label for="switch-checkbox-2">Toggle switch</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Disabled</legend>
+
+    <div class="form-picker-group switch">
+      <input type="checkbox" id="switch-checkbox-3" disabled>
+      <label for="switch-checkbox-3">Toggle switch</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Checked and Disabled</legend>
+
+    <div class="form-picker-group switch">
+      <input type="checkbox" id="switch-checkbox-4" checked disabled>
+      <label for="switch-checkbox-4">Toggle switch</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">With Hint Text</legend>
+
+    <div class="form-picker-group switch">
+      <input type="checkbox" id="switch-checkbox-5">
+      <div>
+        <label for="switch-checkbox-5">Toggle switch</label>
+        <p class="form-hint">Hint text</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Labels First</legend>
+
+    <div class="form-picker-group switch-right">
+      <label for="switch-checkbox-6">Toggle switch</label>
+      <input type="checkbox" id="switch-checkbox-6">
+    </div>
+
+    <div class="form-picker-group switch-right">
+      <div>
+        <label for="switch-checkbox-7">Toggle switch</label>
+        <p class="form-hint">Hint text</p>
+      </div>
+      <input type="checkbox" id="switch-checkbox-7">
+    </div>
+  </fieldset>
+</form>
+<% end %>
+
+<%= h2_with_anchor "Radio Buttons" %>
+<%= render "jumpstart/docs/snippet" do %>
+<form action="#" class="space-y-4">
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Checked and Unchecked</legend>
+
+    <div class="form-picker-group">
+      <input name="radio-default" type="radio" id="radio-checked" checked>
+      <label for="radio-checked">Label text</label>
+    </div>
+
+    <div class="form-picker-group">
+      <input name="radio-default" type="radio" id="radio">
+      <label for="radio">Label text</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Disabled</legend>
+
+    <div class="form-picker-group">
+      <input name="radio-disabled" type="radio" id="disabled-radio" disabled>
+      <label for="disabled-radio">Disabled radio</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Checked and Disabled</legend>
+
+    <div class="form-picker-group">
+      <input name="radio-disabled" type="radio" id="radio-checked-disabled" checked disabled>
+      <label for="radio-checked-disabled">Label text</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">With Hint Text</legend>
+
+    <div class="form-picker-group">
+      <input name="radio" type="radio" id="checked-radio">
+      <div>
+        <label for="checked-radio">Label text</label>
+        <p class="form-hint">Hint text</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="space-y-2">
+    <legend class="text-sm font-bold">Labels First</legend>
+
+    <div class="form-picker-group">
+      <label for="radio-label-first-1">Label text</label>
+      <input name="radio-label-first" type="radio" id="radio-label-first-1">
+    </div>
+
+    <div class="form-picker-group">
+      <div>
+        <label for="radio-label-first-2">Label text</label>
+        <p class="form-hint">Hint text</p>
+      </div>
+      <input name="radio-label-first" type="radio" id="radio-label-first-2">
+    </div>
+  </fieldset>
+</form>
+<% end %>
+
+<%= render "jumpstart/docs/snippet" do %>
+  <form action="#">
     <div class="form-group">
       <label for="inline-email">Inline control with button</label>
       <div class="flex gap-2">
@@ -121,18 +290,18 @@
 
 <%= h3_with_anchor "Inline Layout" %>
 <%= render "jumpstart/docs/snippet" do %>
-  <form action="#">
-    <div class="flex flex-wrap items-center justify-start form-group">
-      <label for="name" class="lg:w-1/6 lg:text-right lg:pr-4 lg:mt-2">Name</label>
+  <form action="#" class="inline">
+    <div class="form-group">
+      <label for="name" class="lg:w-1/6 lg:text-right lg:pr-4">Name</label>
       <input type="text" name="name" class="form-control lg:flex-1">
     </div>
 
-    <div class="flex flex-wrap items-center justify-start form-group">
-      <label for="email" class="lg:w-1/6 lg:text-right lg:pr-4 lg:mt-2">Email</label>
+    <div class="form-group">
+      <label for="email" class="lg:w-1/6 lg:text-right lg:pr-4">Email</label>
       <input type="email" name="email" class="form-control lg:flex-1">
     </div>
 
-    <div class="flex flex-wrap items-center justify-start form-group">
+    <div class="form-group">
       <label for="website" class="lg:w-1/6 lg:text-right lg:pr-4 lg:-mt-4">Website</label>
       <div class="w-full lg:flex-1">
         <input type="url" name="website" class="form-control error" value="My Website">
@@ -140,21 +309,21 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center justify-start form-group">
-      <span class="label lg:w-1/6 lg:text-right lg:pr-4 lg:mt-2">Avatar</span>
-      <div class="w-full lg:flex-1">
-        <input type="file" id="avatar2" name="avatar2" class="input-file" data-multiple-caption="{count} files selected" multiple>
-        <label for="avatar2">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
-            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-          </svg>
-          <span>Upload Avatar</span>
-        </label>
-      </div>
+    <div class="file-input-group">
+      <p class="label lg:w-1/6 lg:text-right lg:pr-4">
+      Avatar
+      </p>
+      <label for="avatar-inline" class="btn btn-tertiary">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1">
+          <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
+        </svg>
+        <span>Upload Avatar</span>
+      </label>
+      <input type="file" id="avatar-inline" name="avatar-inline" data-multiple-caption="{count} files selected">
     </div>
 
     <div class="flex flex-wrap items-center justify-start form-group">
-      <label for="industry" class="label lg:w-1/6 lg:text-right lg:pr-4 lg:mt-2">Industry</label>
+      <label for="industry" class="lg:w-1/6 lg:text-right lg:pr-4 lg:mt-2">Industry</label>
       <div class="relative w-full lg:flex-1">
         <select name="industry" class="select">
           <option value="" selected>Choose an industry</option>
@@ -165,22 +334,25 @@
       </div>
     </div>
 
-    <p class="mb-4 text-gray-700 dark:text-gray-200 text-sm">Checkboxes labels can be either on the left or right.</p>
-    <div class="flex flex-wrap items-center justify-start form-group">
-      <label for="admin" class="label lg:w-1/6 lg:text-right lg:pr-4">Admin</label>
-      <input type="checkbox" id="admin" class="form-checkbox">
+    <p class="mb-4 text-gray-700 dark:text-gray-200 text-sm">
+      Checkboxes labels can be either on the left or right.
+    </p>
+
+    <div class="form-picker-group">
+      <label for="admin" class="lg:w-1/6 lg:text-right">Admin</label>
+      <input type="checkbox" id="admin">
     </div>
 
-    <div class="flex flex-wrap items-center justify-start form-group">
-      <div class="lg:w-1/6 lg:pr-4"></div>
-      <input type="checkbox" id="admin2" class="form-checkbox mr-2">
-      <label for="admin2" class="inline-block mb-0">Member</label>
+    <div class="form-picker-group">
+      <div class="lg:w-1/6"></div>
+      <input type="checkbox" id="admin2">
+      <label for="admin2">Member</label>
     </div>
 
-    <div class="flex flex-wrap items-center justify-start form-group switch">
+    <div class="form-picker-group switch">
       <div class="lg:w-1/6 lg:pr-4"></div>
-      <input type="checkbox" id="inline-switch" class="form-checkbox mr-2">
-      <label for="inline-switch" class="inline-block mb-0">Member</label>
+      <input type="checkbox" id="inline-switch">
+      <label for="inline-switch">Member</label>
     </div>
   </form>
 <% end %>
@@ -190,10 +362,16 @@
 
 <div class="form-group">
   <label for="name">Date</label>
-  <input type="text" name="date" class="form-control" data-controller="flatpickr">
+  <input type="text" placeholder="Select a date" name="date" class="form-control" data-controller="flatpickr">
+  <svg class="calendar-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> 
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.90039 2.39999C7.39745 2.39999 7.80039 2.80294 7.80039 3.29999V4.79999H16.2004V3.29999C16.2004 2.80294 16.6033 2.39999 17.1004 2.39999C17.5974 2.39999 18.0004 2.80294 18.0004 3.29999V4.79999H18.3004C20.1229 4.79999 21.6004 6.27745 21.6004 8.09999V18.3C21.6004 20.1225 20.1229 21.6 18.3004 21.6H5.70039C3.87785 21.6 2.40039 20.1225 2.40039 18.3V8.09999C2.40039 6.27745 3.87785 4.79999 5.70039 4.79999H6.00039V3.29999C6.00039 2.80294 6.40333 2.39999 6.90039 2.39999ZM5.70039 8.99999C4.87196 8.99999 4.20039 9.67157 4.20039 10.5V18.3C4.20039 19.1284 4.87196 19.8 5.70039 19.8H18.3004C19.1288 19.8 19.8004 19.1284 19.8004 18.3V10.5C19.8004 9.67157 19.1288 8.99999 18.3004 8.99999H5.70039Z" fill="#6B7280"/>
+  </svg>
 </div>
 
 <div class="form-group">
   <label for="name">Date &amp; Time</label>
-  <input type="text" name="datetime" class="form-control" data-controller="flatpickr" data-flatpickr-enable-time="true">
+  <input type="text" placeholder="Select a date and time" name="datetime" class="form-control" data-controller="flatpickr" data-flatpickr-enable-time="true">
+  <svg class="calendar-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.90039 2.39999C7.39745 2.39999 7.80039 2.80294 7.80039 3.29999V4.79999H16.2004V3.29999C16.2004 2.80294 16.6033 2.39999 17.1004 2.39999C17.5974 2.39999 18.0004 2.80294 18.0004 3.29999V4.79999H18.3004C20.1229 4.79999 21.6004 6.27745 21.6004 8.09999V18.3C21.6004 20.1225 20.1229 21.6 18.3004 21.6H5.70039C3.87785 21.6 2.40039 20.1225 2.40039 18.3V8.09999C2.40039 6.27745 3.87785 4.79999 5.70039 4.79999H6.00039V3.29999C6.00039 2.80294 6.40333 2.39999 6.90039 2.39999ZM5.70039 8.99999C4.87196 8.99999 4.20039 9.67157 4.20039 10.5V18.3C4.20039 19.1284 4.87196 19.8 5.70039 19.8H18.3004C19.1288 19.8 19.8004 19.1284 19.8004 18.3V10.5C19.8004 9.67157 19.1288 8.99999 18.3004 8.99999H5.70039Z" fill="#6B7280"/>
+  </svg>
 </div>

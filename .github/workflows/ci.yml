@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  scan:
+  scan_ruby:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
@@ -22,8 +22,8 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Scan for security vulnerabilities
-        run: bin/brakeman
+      - name: Scan for common Rails security vulnerabilities
+        run: bin/brakeman --no-pager
 
   lint:
     timeout-minutes: 10
@@ -38,7 +38,7 @@ jobs:
           bundler-cache: true
 
       - name: Lint code for consistent style
-        run: bundle exec standardrb
+        run: bin/rubocop -f github
 
       - name: Erblint
         run: bundle exec erblint --lint-all

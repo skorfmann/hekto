@@ -10,6 +10,8 @@ class Subscriptions::PaymentMethodsController < ApplicationController
       redirect_to @payment_processor.billing_portal(return_url: subscriptions_url).url, allow_other_host: true
     when "paddle_classic", "paddle_billing"
       redirect_to @subscription.paddle_update_url, allow_other_host: true
+    when "lemon_squeezy"
+      redirect_to @subscription.api_record.urls.update_payment_method
     end
   end
 

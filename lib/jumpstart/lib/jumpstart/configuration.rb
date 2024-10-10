@@ -82,6 +82,10 @@ module Jumpstart
         payment_processors.include? "stripe"
       end
 
+      def lemon_squeezy?
+        payment_processors.include? "lemon_squeezy"
+      end
+
       def braintree?
         payment_processors.include? "braintree"
       end

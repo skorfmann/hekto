@@ -6,119 +6,298 @@ button[disabled]        .when-enabled { display: none; }
 
 @layer components {
   .btn {
-    @apply no-underline shadow-sm inline-flex items-center justify-between rounded-md px-3 py-2 text-sm font-semibold;
-    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
+    display: inline-flex;
+    padding: 8px 12px;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
 
     &:hover,
     &:focus {
-      @apply cursor-pointer;
+      cursor: pointer;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--base-border-focus);
+      outline-offset: 2px;
     }
 
     &:disabled {
-      @apply opacity-75 cursor-not-allowed;
+      opacity: 60%;
+      cursor: not-allowed;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
     }
   }
 
   .btn-outline {
-    @apply shadow-none;
+    box-shadow: 0 0 #0000;
   }
 
   .btn-xs {
-    @apply px-2 py-1 text-xs;
+    padding: 4px 8px;
+    font-size: 12px;
+    line-height: 1;
   }
 
   .btn-sm,
   .btn-small {
-    @apply px-2 py-1;
+    padding: 4px 8px;
   }
 
   .btn-lg,
   .btn-large {
-    @apply px-3.5 py-2.5;
+    padding: 10px 14px;
   }
 
   .btn-xl {
-    @apply px-4 py-3;
+    padding: 12px 16px;
+  }
+
+  .btn-icon {
+    padding: 8px;
+    border-radius: 50%;
+
+    &.btn-xs {
+      padding: 4px;
+    }
+
+    &.btn-sm {
+      padding: 10px;
+    }
+
+    &.btn-lg {
+      padding: 12px;
+    }
+
+    &.btn-xl {
+      padding: 14px;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .btn-expanded,
+  .btn-block {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white;
-    @apply hover:bg-primary-500 hover:text-white;
-    @apply focus:text-white focus-visible:text-white focus-visible:outline-primary-500;
+    background: var(--bg-primary);
+    color: var(--text-on-primary);
+
+    &:hover {
+      background: var(--bg-primary-hover);
+      color: var(--text-on-primary);
+    }
+
+    &:disabled:hover {
+      background: var(--bg-primary);
+      color: var(--text-on-primary);
+    }
 
     &.btn-outline {
-      @apply bg-transparent border border-primary-500 text-primary-500 shadow-none;
-      @apply hover:bg-primary-500 hover:text-white;
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-primary-hover);
+
+      &:hover {
+        background: var(--bg-primary-hover);
+        color: var(--text-on-primary);
+        border: 1px solid var(--bg-primary-hover);
+      }
     }
   }
 
   .btn-secondary,
   .btn-tertiary {
-    @apply bg-white border border-gray-300 text-gray-800;
-    @apply hover:bg-gray-100 hover:text-gray-700;
-    @apply focus:text-gray-700 focus-visible:text-gray-700 focus-visible:text-gray-700 focus-visible:outline-primary-500 dark:focus-visible:outline-white/20;
-    @apply dark:bg-gray-800 dark:text-white dark:border-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-gray-700;
+    background: var(--bg-secondary);
+    color: var(--text-on-secondary);
+    border: 1px solid var(--border-secondary);
+
+    &:hover {
+      background: var(--bg-secondary-hover);
+      color: var(--text-on-secondary-hover);
+    }
+
+    &:disabled:hover {
+      background: var(--bg-secondary);
+      color: var(--text-on-secondary);
+    }
 
     &.btn-outline {
-      @apply bg-transparent hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700;
+      background: transparent;
+      color: var(--text-on-secondary);
+      border: 1px solid var(--border-secondary);
+
+      &:hover {
+        background: var(--bg-secondary-hover);
+        color: var(--text-on-secondary-hover);
+      }
     }
   }
 
   .btn-danger {
-    @apply bg-red-600 text-white focus-visible:outline-red-500;
-    @apply hover:bg-red-500 hover:text-white;
-    @apply focus:text-white focus-visible:text-white;
+    background: var(--bg-danger);
+    color: var(--text-on-danger);
+
+    &:hover {
+      background: var(--bg-danger-hover);
+      color: var(--text-on-danger);
+    }
+
+    &:disabled:hover {
+      background: var(--bg-danger);
+      color: var(--text-on-danger);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--border-danger-focus);
+      outline-offset: 2px;
+    }
 
     &.btn-outline {
-      @apply bg-transparent border border-red-500 text-red-500 shadow-none;
-      @apply hover:bg-red-500 hover:text-white;
+      background: transparent;
+      color: var(--text-danger);
+      border: 1px solid var(--border-danger);
+
+      &:hover {
+        background: var(--bg-danger-hover);
+        color: var(--text-on-danger);
+        border: 1px solid var(--bg-danger-hover);
+      }
     }
   }
 
   .btn-success {
-    @apply bg-green-600 text-white focus-visible:outline-green-500;
-    @apply hover:bg-green-500 hover:text-white;
-    @apply focus:text-white focus-visible:text-white;
+    background: var(--bg-success);
+    color: var(--text-on-success);
+
+    &:hover {
+      background: var(--bg-success-hover);
+      color: var(--text-on-success);
+    }
+
+    &:disabled:hover {
+      background: var(--bg-success);
+      color: var(--text-on-success);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--border-success-focus);
+      outline-offset: 2px;
+    }
 
     &.btn-outline {
-      @apply bg-transparent border border-green-500 text-green-600 shadow-none;
-      @apply hover:bg-green-500 hover:text-white;
+      background: transparent;
+      color: var(--text-success);
+      border: 1px solid var(--border-success);
+
+      &:hover {
+        background: var(--bg-success-hover);
+        color: var(--text-on-success);
+        border: 1px solid var(--bg-success-hover);
+      }
     }
   }
 
   .btn-light,
   .btn-white,
   .btn-gray {
-    @apply bg-white border border-gray-300 text-gray-800;
-    @apply hover:bg-gray-50 hover:text-gray-800;
-    @apply focus:text-gray-800 focus-visible:text-gray-800 dark:focus-visible:outline-gray-300;
+    background: var(--bg-light);
+    color: var(--text-on-light);
+    border: 1px solid var(--border-light);
+
+    &:hover {
+      background: var(--bg-light-hover);
+      color: var(--text-on-light);
+    }
+
+    &:disabled:hover {
+      background: var(--bg-light);
+      color: var(--text-on-light);
+    }
 
     &.btn-outline {
-      @apply bg-transparent shadow-none dark:text-gray-200;
-      @apply hover:bg-gray-100 dark:hover:text-gray-800;
+      background: transparent;
+      color: var(--text-on-light-outline);
+      border: 1px solid var(--border-light);
+
+      &:hover {
+        background: var(--bg-light-hover);
+        color: var(--text-on-light);
+      }
     }
   }
 
   .btn-dark {
-    @apply bg-gray-800 border border-gray-700 text-white;
-    @apply hover:bg-gray-700 hover:text-white;
-    @apply focus:text-white focus-visible:text-white focus-visible:outline-gray-500 dark:focus-visible:outline-gray-700;
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    border: 1px solid var(--bg-dark);
+
+    &:hover {
+      background: var(--bg-dark-hover);
+      color: var(--text-on-dark);
+      border: 1px solid var(--bg-dark-hover);
+    }
+
+    &:disabled:hover {
+      background: var(--bg-dark);
+      color: var(--text-on-dark);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--border-dark-focus);
+      outline-offset: 2px;
+    }
 
     &.btn-outline {
-      @apply bg-transparent text-gray-800 dark:text-gray-100 shadow-none;
-      @apply hover:bg-gray-700 hover:text-white;
-      @apply focus:bg-gray-700 focus:text-white;
+      background: transparent;
+      color: var(--text-on-dark-outline);
+      border: 1px solid var(--border-dark);
+
+      &:hover {
+        background: var(--bg-dark-hover);
+        color: var(--text-on-dark);
+      }
     }
   }
 
   .btn-link {
-    @apply text-primary-500 bg-transparent shadow-none focus-visible:outline-primary-500;
-    @apply dark:hover:text-primary-500 dark:hover:bg-gray-800;
-    @apply hover:text-primary-600;
-  }
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: 0 0 #0000;
 
-  .btn-expanded,
-  .btn-block {
-    @apply flex justify-center w-full;
+    &:hover {
+      color: var(--text-primary-hover);
+    }
+
+    &:disabled:hover {
+      background: transparent;
+      color: var(--text-primary);
+    }
+
+    &.btn-icon {
+      background: var(--base-bg-lowest);
+      border: 1px solid var(--border-primary-hover);
+
+      &:hover {
+        background: var(--base-bg-low);
+      }
+    }
   }
 }

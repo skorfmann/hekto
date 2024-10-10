@@ -2,7 +2,8 @@ require "test_helper"
 
 class AnnouncementTest < ActiveSupport::TestCase
   test "unread? returns false for guest when no announcements" do
-    assert Announcement.unread?(nil)
+    Announcement.delete_all
+    assert_not Announcement.unread?(nil)
   end
 
   test "unread? returns true for guest" do

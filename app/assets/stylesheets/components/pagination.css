@@ -1,32 +1,43 @@
 nav.pagy.nav {
-  @apply inline-flex flex-wrap items-center justify-start;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
 
   a:first-child {
-    @apply rounded-tl rounded-bl;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
   }
 
   a:last-child {
-    @apply rounded-tr rounded-br;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 
   a:not(.gap) {
-    @apply border relative block leading-tight bg-white text-primary-500 no-underline py-2 px-3 tabular-nums;
-    @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600;
+    background: var(--base-bg-lowest);
+    border: 1px solid var(--base-border-tertiary);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    position: relative;
+    display: block;
+    font-variant-numeric: tabular-nums;
     margin-left: -1px;
 
     &:hover {
-      @apply bg-gray-200 dark:bg-gray-700;
+      background: var(--base-bg-hover);
+      color: var(--text-primary-hover);
     }
 
     &[aria-current="page"].current {
-      @apply z-10 border-primary-500 bg-primary-500 text-white;
-      @apply dark:bg-primary-800 dark:text-gray-200 dark:border-primary-600;
+      background: var(--bg-primary);
+      color: var(--text-on-primary);
       margin-left: -1px;
     }
 
     &:not([href]) {
-      @apply bg-white text-gray-500;
-      @apply dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600;
+      background: var(--base-bg-lowest);
+      color: var(--base-text-tertiary);
       margin-left: -1px;
     }
   }

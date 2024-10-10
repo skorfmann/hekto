@@ -134,11 +134,11 @@ class ApplicationClientTest < ActiveSupport::TestCase
   end
 
   test "response object parses json" do
-    stub_request(:get, "https://example.org/test").to_return(body: {"foo" => "bar"}.to_json, headers: {content_type: "application/json"})
+    stub_request(:get, "https://example.org/test").to_return(body: {"foo" => {"bar" => "baz"}}.to_json, headers: {content_type: "application/json"})
     result = @client.send(:get, "/test")
     assert_equal "200", result.code
     assert_equal "application/json", result.content_type
-    assert_equal "bar", result.foo
+    assert_equal "baz", result.foo.bar
   end
 
   test "response object parses xml" do

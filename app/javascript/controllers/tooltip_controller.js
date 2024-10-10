@@ -19,6 +19,11 @@ export default class extends Controller {
     if (this.hasContentValue) {
       options['content'] = this.contentValue
     }
+
+    if (!options['theme']) {
+      options['theme'] = 'default';
+    }
+
     this.tippy = tippy(this.element, options);
   }
 

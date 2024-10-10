@@ -19,10 +19,17 @@ class SubscriptionsController < ApplicationController
     redirect_to edit_subscription_path(@subscription)
   end
 
-  # Stripe subscriptions are handled entirely client side
-  # We need to create a subscription to render the PaymentElement
   def new
-    set_checkout_session if Jumpstart.config.stripe?
+    if Jumpstart.config.stripe?
+      current_account.set_payment_processor(:stripe)
+      set_checkout_session
+    elsif Jumpstart.config.lemon_squeezy?
+      current_account.set_payment_processor(:lemon_squeezy)
+      checkout = payment_processor.checkout(variant_id: @plan.id_for_processor(:lemon_squeezy))
+      redirect_to checkout.url, allow_other_host: true
+    else
+      current_account.set_payment_processor(Jumpstart.config.payment_processors.first)
+    end
   rescue Pay::Error => e
     flash[:alert] = e.message
     redirect_to pricing_path
@@ -31,7 +38,7 @@ class SubscriptionsController < ApplicationController
   # Only used by Braintree
   def create
     payment_processor = params[:processor] ? current_account.set_payment_processor(params[:processor]) : current_account.payment_processor
-    payment_processor.payment_method_token = params[:payment_method_token]
+    payment_processor.update_payment_method(params[:payment_method_token])
     args = {
       plan: @plan.id_for_processor(payment_processor.processor),
       trial_period_days: @plan.trial_period_days
@@ -124,7 +131,7 @@ class SubscriptionsController < ApplicationController
       mode: :subscription,
       line_items: @plan.id_for_processor(:stripe),
       payment_method_collection: :if_required,
-      return_url: subscriptions_stripe_url(return_to: params[:return_to]),
+      return_url: checkout_return_url(return_to: params[:return_to]),
       subscription_data: subscription_data,
       ui_mode: :embedded
     }

@@ -9,7 +9,8 @@ controllers.forEach((controller) => {
   application.register(controller.name, controller.module.default)
 })
 
-import { Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
+import { Alert, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
+application.register('alert', Alert)
 application.register('dropdown', Dropdown)
 application.register('modal', Modal)
 application.register('tabs', Tabs)

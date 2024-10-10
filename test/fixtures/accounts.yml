@@ -25,3 +25,8 @@ fake_processor:
   name: "Per Seat Account"
   personal: false
   account_users_count: 1
+
+subscribed:
+  owner: subscribed
+  name: "Subscribed User"
+  personal: true

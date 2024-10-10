@@ -1,21 +1,24 @@
 <% content_for :section_title, "Cards" %>
 
 <%= h2_with_anchor "Basic Cards" %>
+
 <%= render "jumpstart/docs/snippet" do %>
-<div class="border border-gray-400 dark:border-gray-600 rounded p-8 my-8">
+<div class="card">
   <h3>Card title</h3>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 </div>
 <% end %>
 
 <%= h2_with_anchor "Basic Call To Action" %>
+
 <%= render "jumpstart/docs/snippet" do %>
-<div class="border border-gray-400 dark:border-gray-600 rounded p-8 my-8">
-  <div class="flex flex-wrap items-center justify-between">
+<div class="card">
+  <div class="card-cta-basic">
     <div class="lg:flex-1">
       <h3>Card title</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </div>
+
     <div class="lg:p-0 pt-4">
       <%= link_to "Button", "", class: "btn btn-primary" %>
     </div>
@@ -24,14 +27,16 @@
 <% end %>
 
 <%= h2_with_anchor "Card with Image" %>
+
 <%= render "jumpstart/docs/snippet" do %>
-<div class="border border-gray-400 dark:border-gray-600 rounded my-8 lg:w-1/2 w-full">
+<div class="card card-image">
   <div class="image-placeholder">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-16 h-16 text-gray-500">
       <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
     </svg>
   </div>
-  <div class="p-6">
+
+  <div>
     <h3>Card title</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
   </div>
@@ -39,14 +44,16 @@
 <% end %>
 
 <%= h2_with_anchor "Card with Image and Buttons" %>
+
 <%= render "jumpstart/docs/snippet" do %>
-<div class="border border-gray-400 dark:border-gray-600 rounded my-8 lg:w-1/2 w-full">
+<div class="card card-image">
   <div class="image-placeholder">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-16 h-16 text-gray-500">
       <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
     </svg>
   </div>
-  <div class="p-6">
+
+  <div>
     <h3>Card title</h3>
     <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <%= link_to "Button", "#", class: "btn btn-primary btn-small" %>

@@ -4,7 +4,7 @@ class Users::TwoFactorController < ApplicationController
   before_action :ensure_otp_secret
 
   def show
-    redirect_to edit_user_password_path
+    redirect_to edit_account_password_path
   end
 
   def backup_codes

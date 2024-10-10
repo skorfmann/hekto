@@ -171,4 +171,8 @@ class AccountTest < ActiveSupport::TestCase
       account.destroy
     end
   end
+
+  test "account can be subscribed" do
+    assert accounts(:subscribed).payment_processor.subscribed?
+  end
 end

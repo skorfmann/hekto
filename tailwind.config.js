@@ -31,12 +31,16 @@ module.exports = {
       // Create your own at: https://javisperez.github.io/tailwindcolorshades
       colors: {
         primary: colors.blue,
-        secondary: colors.emerald,
+        secondary: colors.gray,
         tertiary: colors.gray,
         danger: colors.red,
-        gray: colors.neutral,
-        "code-400": "#fefcf9",
-        "code-600": "#3c455b",
+        success: colors.green,
+        info: colors.blue,
+        warning: colors.yellow,
+        accent: colors.orange,
+        light: colors.gray,
+        dark: colors.gray,
+        disabled: colors.gray,
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],

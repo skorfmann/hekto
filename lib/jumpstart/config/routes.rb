@@ -45,6 +45,7 @@ Jumpstart::Engine.routes.draw do
     get :branding
     get :javascript
     get :tailwind
+    get :themes
     get :typography
 
     # Components

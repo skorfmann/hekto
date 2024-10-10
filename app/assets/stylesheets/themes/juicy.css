@@ -1,0 +1,101 @@
+:root.juicy,
+.juicy {
+  /*Primary*/
+  --bg-primary: theme('colors.indigo.700');
+  --bg-primary-hover: theme('colors.indigo.600');
+  --text-on-primary: theme('colors.slate.50');
+  --border-primary: theme('colors.indigo.600');
+  --border-primary-hover: theme('colors.indigo.500');
+  --text-primary: theme('colors.indigo.700');
+  --text-primary-hover: theme('colors.indigo.600');
+
+  /*Secondary*/
+  --bg-secondary: theme('colors.teal.400');
+  --text-on-secondary: theme('colors.teal.900');
+  --bg-secondary-hover: theme('colors.teal.300');
+  --text-on-secondary-hover: theme('colors.slate.800');
+  --border-secondary: theme('colors.teal.300');
+
+  /*Danger*/
+  --bg-danger: theme('colors.rose.800');
+  --bg-danger-hover: theme('colors.rose.600');
+  --text-on-danger: theme('colors.white');
+  --border-danger: theme('colors.rose.500');
+  --border-danger-focus: theme('colors.rose.500');
+  --text-danger: theme('colors.rose.700');
+  --bg-danger-secondary: theme('colors.rose.50');
+  --text-on-danger-secondary: theme('colors.rose.700');
+  --icon-on-danger-secondary: theme('colors.rose.600');
+
+  /*Success*/
+  --bg-success: theme('colors.emerald.800');
+  --bg-success-hover: theme('colors.emerald.700');
+  --text-on-success: theme('colors.white');
+  --border-success: theme('colors.emerald.600');
+  --border-success-focus: theme('colors.emerald.500');
+  --text-success: theme('colors.emerald.800');
+  --bg-success-secondary: theme('colors.emerald.50');
+  --text-on-success-secondary: theme('colors.emerald.700');
+  --icon-on-success-secondary: theme('colors.emerald.600');
+
+  /*Info*/
+  --bg-info-secondary: theme('colors.indigo.200');
+  --text-on-info-secondary: theme('colors.indigo.800');
+  --icon-on-info-secondary: theme('colors.indigo.600');
+
+  /*Warning*/
+  --bg-warning-secondary: theme('colors.amber.100');
+  --text-on-warning-secondary: theme('colors.amber.800');
+  --icon-on-warning-secondary: theme('colors.amber.600');
+
+  /*Accent*/
+  --bg-accent: theme('colors.lime.300');
+  --text-on-accent: theme('colors.slate.700');
+  --border-accent: theme('colors.lime.500');
+  --text-accent: theme('colors.lime.700');
+
+  /*Light*/
+  --bg-light: theme('colors.slate.50');
+  --bg-light-hover: theme('colors.slate.100');
+  --text-on-light: theme('colors.blue.900');
+  --text-on-light-outline: theme('colors.blue.900');
+  --border-light: theme('colors.slate.200');
+
+  /*Dark*/
+  --bg-dark: theme('colors.indigo.950');
+  --bg-dark-secondary: theme('colors.indigo.500');
+  --bg-dark-hover: theme('colors.indigo.900');
+  --text-on-dark: theme('colors.indigo.50');
+  --text-on-dark-outline: theme('colors.indigo.900');
+  --border-dark: theme('colors.indigo.700');
+  --border-dark-focus: theme('colors.indigo.500');
+
+  /*Disabled*/
+  --bg-disabled: theme('colors.slate.200');
+  --bg-disabled-selected: theme('colors.slate.400');
+  --text-on-disabled-selected: theme('colors.slate.200');
+  --border-disabled: theme('colors.slate.300');
+  --bg-disabled-secondary: theme('colors.slate.300');
+  --icon-disabled: theme('colors.slate.400');
+
+  /*Base*/
+  --base-text: theme('colors.slate.800');
+  --base-text-secondary: theme('colors.blue.950');
+  --base-text-tertiary: theme('colors.slate.600');
+  --base-text-disabled: theme('colors.slate.400');
+  --base-icon: theme('colors.indigo.800');
+  --base-bg-backdrop: theme('colors.indigo.950');
+  --base-bg-highest: theme('colors.sky.400');
+  --base-bg-high: theme('colors.sky.300');
+  --base-bg-base: theme('colors.sky.200');
+  --base-bg-low: theme('colors.sky.100');
+  --base-bg-lowest: theme('colors.sky.50');
+  --base-border-primary: theme('colors.sky.600');
+  --base-border-secondary: theme('colors.sky.400');
+  --base-border-tertiary: theme('colors.sky.300');
+  --base-border-focus: theme('colors.teal.500');
+  --base-bg-selected: theme('colors.sky.600');
+  --base-bg-hover: theme('colors.indigo.50');
+  --base-bg-tooltip: theme('colors.slate.800');
+  --base-text-on-tooltip: theme('colors.white');
+}

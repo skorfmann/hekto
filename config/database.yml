@@ -84,7 +84,21 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: taxbucket_production
-  username: taxbucket
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  primary:
+    <<: *default
+    database: taxbucket_production
+    username: taxbucket
+    password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+  cache:
+    <<: *default
+    database: jumpstart_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *default
+    database: jumpstart_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    database: jumpstart_production_cable
+    migrations_paths: db/cable_migrate

@@ -1,5 +1,8 @@
+namespace :checkout do
+  resource :return, only: [:show]
+end
+
 namespace :subscriptions do
-  resource :stripe, controller: :stripe, only: [:show]
   resource :paddle_billing, controller: :paddle_billing, only: [:show, :edit]
   resource :paddle_classic, controller: :paddle_classic, only: [:show]
 end
