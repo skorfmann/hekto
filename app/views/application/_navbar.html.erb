@@ -19,7 +19,9 @@
         data-transition-leave-from="opacity-100"
         data-transition-leave-to="opacity-0">
     <div class="lg:flex-grow">
-      <%= render "left_nav" %>
+      <% if user_signed_in? %>
+        <%= render "left_nav" %>
+      <% end %>
     </div>
     <div>
       <%= render "right_nav" %>
