@@ -6,7 +6,7 @@ class CreateDurableFlowWorkflowInstances < ActiveRecord::Migration[8.0]
       t.jsonb :input
       t.jsonb :output
       t.jsonb :state
-      t.string :status
+      t.integer :status, default: 0
       t.jsonb :payload
       t.string :name
 

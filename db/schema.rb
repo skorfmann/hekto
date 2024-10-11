@@ -216,7 +216,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_11_074206) do
     t.jsonb "input"
     t.jsonb "output"
     t.jsonb "error"
-    t.string "status"
+    t.integer "status", default: 0
+    t.datetime "sleep_until"
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -231,7 +232,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_11_074206) do
     t.jsonb "input"
     t.jsonb "output"
     t.jsonb "state"
-    t.string "status"
+    t.integer "status", default: 0
     t.jsonb "payload"
     t.string "name"
     t.datetime "created_at", null: false

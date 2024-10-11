@@ -10,7 +10,7 @@
 #  input                :jsonb
 #  output               :jsonb
 #  error                :jsonb
-#  status               :string
+#  status               :integer          default("pending")
 #  type                 :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
@@ -18,4 +18,6 @@
 class DurableFlow::StepExecution < ApplicationRecord
   belongs_to :account
   belongs_to :workflow_instance, class_name: 'DurableFlow::WorkflowInstance'
+
+  enum :status, %i[pending running sleeping completed failed cancelled]
 end

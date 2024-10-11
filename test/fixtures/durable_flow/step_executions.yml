@@ -10,7 +10,7 @@
 #  input                :jsonb
 #  output               :jsonb
 #  error                :jsonb
-#  status               :string
+#  status               :integer          default("pending")
 #  type                 :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null

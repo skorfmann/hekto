@@ -8,7 +8,8 @@ class CreateDurableFlowStepExecutions < ActiveRecord::Migration[8.0]
       t.jsonb :input
       t.jsonb :output
       t.jsonb :error
-      t.string :status
+      t.integer :status, default: 0
+      t.datetime :sleep_until
       t.string :type
 
       t.timestamps
