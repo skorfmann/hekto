@@ -11,4 +11,7 @@
 #  updated_at :datetime         not null
 #
 class DurableFlow::Event < ApplicationRecord
+  belongs_to :account
+  belongs_to :user, optional: true
+  has_many :workflow_instances, class_name: "DurableFlow::WorkflowInstance"
 end

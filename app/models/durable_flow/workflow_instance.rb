@@ -16,4 +16,6 @@
 #
 class DurableFlow::WorkflowInstance < ApplicationRecord
   belongs_to :account
+  has_many :step_executions, class_name: "DurableFlow::StepExecution"
+  belongs_to :event, class_name: "DurableFlow::Event"
 end

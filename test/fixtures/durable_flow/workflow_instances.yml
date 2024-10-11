@@ -1,0 +1,37 @@
+# == Schema Information
+#
+# Table name: durable_flow_workflow_instances
+#
+#  id         :bigint           not null, primary key
+#  account_id :bigint           not null
+#  event_id   :bigint           not null
+#  input      :jsonb
+#  output     :jsonb
+#  state      :jsonb
+#  status     :string
+#  payload    :jsonb
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  event: one
+  input: { "key": "value" }
+  output: {}
+  state: { "current_step": "start" }
+  status: "running"
+  payload: { "data": "sample" }
+  name: "Workflow One"
+
+two:
+  account: two
+  event: two
+  input: { "another_key": "another_value" }
+  output: { "result": "success" }
+  state: { "current_step": "completed" }
+  status: "finished"
+  payload: { "more_data": "example" }
+  name: "Workflow Two"

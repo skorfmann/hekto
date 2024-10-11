@@ -15,22 +15,25 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  payload: 
-  input: 
-  output: 
-  error: 
-  status: MyString
-  type: 
+step_execution_one:
+  account: one
+  workflow_instance: one
+  name: "Process Order"
+  payload: { order_id: 12345 }
+  input: { customer_id: 67890, items: [{ id: 1, quantity: 2 }, { id: 2, quantity: 1 }] }
+  output: { order_processed: true, total_amount: 150.00 }
+  error:
+  status: "completed"
+  type: "DurableFlow::ProcessOrderStep"
 
-two:
-  name: MyString
-  payload: 
-  input: 
-  output: 
-  error: 
-  status: MyString
-  type: 
+step_execution_two:
+  account: two
+  workflow_instance: two
+  name: "Send Confirmation Email"
+  payload: { email_id: 54321 }
+  input: { recipient: "customer@example.com", order_number: "ORD-12345" }
+  output:
+  error: { message: "Failed to send email", code: "EMAIL_001" }
+  status: "failed"
+  type: "DurableFlow::SendEmailStep"
