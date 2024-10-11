@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_08_21_183620) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_11_074206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -197,11 +197,74 @@ ActiveRecord::Schema[8.0].define(version: 2024_08_21_183620) do
     t.index ["vendor_id"], name: "index_documents_on_vendor_id"
   end
 
+  create_table "durable_flow_events", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "user_id"
+    t.string "name"
+    t.jsonb "payload"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_durable_flow_events_on_account_id"
+    t.index ["user_id"], name: "index_durable_flow_events_on_user_id"
+  end
+
+  create_table "durable_flow_step_executions", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "workflow_instance_id", null: false
+    t.string "name"
+    t.jsonb "payload"
+    t.jsonb "input"
+    t.jsonb "output"
+    t.jsonb "error"
+    t.string "status"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_durable_flow_step_executions_on_account_id"
+    t.index ["type"], name: "index_durable_flow_step_executions_on_type"
+    t.index ["workflow_instance_id"], name: "index_durable_flow_step_executions_on_workflow_instance_id"
+  end
+
+  create_table "durable_flow_workflow_instances", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "event_id", null: false
+    t.jsonb "input"
+    t.jsonb "output"
+    t.jsonb "state"
+    t.string "status"
+    t.jsonb "payload"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_durable_flow_workflow_instances_on_account_id"
+    t.index ["event_id"], name: "index_durable_flow_workflow_instances_on_event_id"
+  end
+
   create_table "inbound_webhooks", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "inferences", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "user_id"
+    t.text "prompt"
+    t.text "response"
+    t.integer "input_tokens"
+    t.integer "output_tokens"
+    t.string "model"
+    t.string "provider"
+    t.decimal "cost_per_1000_input_tokens", precision: 20, scale: 16
+    t.decimal "cost_per_1000_output_tokens", precision: 20, scale: 16
+    t.string "subject_type"
+    t.bigint "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_inferences_on_account_id"
+    t.index ["subject_type", "subject_id"], name: "index_inferences_on_subject"
+    t.index ["user_id"], name: "index_inferences_on_user_id"
   end
 
   create_table "noticed_events", force: :cascade do |t|
@@ -582,6 +645,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_08_21_183620) do
   add_foreign_key "documents", "accounts"
   add_foreign_key "documents", "users"
   add_foreign_key "documents", "vendors"
+  add_foreign_key "durable_flow_events", "accounts"
+  add_foreign_key "durable_flow_events", "users"
+  add_foreign_key "durable_flow_step_executions", "accounts"
+  add_foreign_key "durable_flow_step_executions", "durable_flow_workflow_instances", column: "workflow_instance_id"
+  add_foreign_key "durable_flow_workflow_instances", "accounts"
+  add_foreign_key "durable_flow_workflow_instances", "durable_flow_events", column: "event_id"
+  add_foreign_key "inferences", "accounts", on_delete: :cascade
+  add_foreign_key "inferences", "users", on_delete: :cascade
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"

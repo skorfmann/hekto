@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  payload: 
+  input: 
+  output: 
+  error: 
+  status: MyString
+  type: 
+
+two:
+  name: MyString
+  payload: 
+  input: 
+  output: 
+  error: 
+  status: MyString
+  type: 

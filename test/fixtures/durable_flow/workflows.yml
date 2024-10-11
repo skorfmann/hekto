@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  input: 
+  output: 
+  state: 
+  status: 
+  payload: 
+  event_name: MyString
+
+two:
+  input: 
+  output: 
+  state: 
+  status: 
+  payload: 
+  event_name: MyString
