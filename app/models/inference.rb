@@ -1,0 +1,2 @@
+class Inference < ApplicationRecord
+end

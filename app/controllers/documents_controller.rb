@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   def index
     items_per_page = 30 # Adjust as needed
     @pagy_by_month, documents_by_month = pagy(
-      current_account.documents.with_metadata,
+      current_account.documents.with_metadata.with_attached_file,
       page_param: :page_by_month,
       items: items_per_page
     )
