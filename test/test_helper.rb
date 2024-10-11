@@ -49,3 +49,31 @@ WebMock.disable_net_connect!({
     "selenium"
   ]
 })
+
+VCR.configure do |config|
+  config.cassette_library_dir = "test/vcr_cassettes"
+  config.hook_into :webmock, :faraday
+  # config.before_http_request do |req|
+  #   puts req.uri
+  #   puts req.body
+  #   puts req.headers
+  # end
+
+  config.debug_logger = File.open(Rails.root.join('log', 'vcr_debug.log'), 'w')
+
+  config.before_record do |interaction|
+    # Remove sensitive headers
+    interaction.request.headers.delete('Authorization')
+    interaction.request.headers.delete('X-Api-Key')
+
+    # Optionally, you can also modify the recorded response
+    # interaction.response.body = 'modified response'
+  end
+
+  config.default_cassette_options = {
+    record: :once,
+    record_on_error: false,
+    match_requests_on: [:method, :uri],
+    allow_unused_http_interactions: true
+  }
+end

@@ -1,5 +1,5 @@
 module Inference
-  class AIService
+  class AiService
     class << self
       def for(provider)
         case provider.to_sym

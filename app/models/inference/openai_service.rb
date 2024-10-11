@@ -1,5 +1,11 @@
 module Inference
-  class OpenAIService < AIService
+  class OpenAIService < AiService
+    COSTS_PER_1K_TOKENS = {
+      'gpt-3.5-turbo' => { input: 0.0015, output: 0.002 },
+      'gpt-4' => { input: 0.03, output: 0.06 },
+      'gpt-4-32k' => { input: 0.06, output: 0.12 }
+    }
+
     def stream(prompt:, model:)
       client = OpenAI::Client.new
       provider_stream = client.chat(

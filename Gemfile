@@ -78,7 +78,7 @@ eval_gemfile 'Gemfile.jumpstart'
 # We recommend using strong migrations when your app is in production
 # gem "strong_migrations"
 
-gem 'anthropic', '~> 0.3.0'
+gem 'anthropic', '~> 0.3.2'
 
 gem 'pdf-reader', '~> 2.12'
 
@@ -102,3 +102,7 @@ gem "open_exchange_rates", "~> 0.6.1"
 gem "statesman", "~> 12.1"
 
 gem "sqlite3", "~> 2.0", :group => :dev
+
+gem "vcr", "~> 6.3"
+
+gem "httparty", "~> 0.22.0"
