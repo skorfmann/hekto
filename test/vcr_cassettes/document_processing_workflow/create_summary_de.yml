@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20240620","messages":[{"role":"user","content":"{\"due_date\"=\u003e\"2023-12-31\",
+        \"total_amount\"=\u003e1500.0, \"customer_name\"=\u003e\"Acme Corp\", \"invoice_number\"=\u003e\"INV-001\"}\n\nerstelle
+        eine kurze, einzeilige zusammenfassung des Inhalts des Dokuments zur leichteren
+        Erinnerung.\nz.b. Lunch bei Trattoria in Berlin, 1. Mai 2024, 12:00 Uhr, 2
+        Personen, 20€"}],"max_tokens":4096}'
+    headers:
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 12 Oct 2024 09:13:54 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '4000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '3999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-10-12T09:13:55Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-10-12T09:13:54Z'
+      Request-Id:
+      - req_01SpmA83A6ndyRjpStB93qZp
+      X-Cloud-Trace-Context:
+      - 9dfd2ead85136661e42b1dd6200a08e4
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8d15fa008961dc5c-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6Im1zZ18wMUJLVHlaNDd6M1hBTXBicnB0Y29KM1MiLCJ0eXBlIjoibWVzc2FnZSIsInJvbGUiOiJhc3Npc3RhbnQiLCJtb2RlbCI6ImNsYXVkZS0zLTUtc29ubmV0LTIwMjQwNjIwIiwiY29udGVudCI6W3sidHlwZSI6InRleHQiLCJ0ZXh0IjoiUmVjaG51bmcgSU5WLTAwMSBmw7xyIEFjbWUgQ29ycCwgMTUwMOKCrCwgZsOkbGxpZyBhbSAzMS4xMi4yMDIzIn1dLCJzdG9wX3JlYXNvbiI6ImVuZF90dXJuIiwic3RvcF9zZXF1ZW5jZSI6bnVsbCwidXNhZ2UiOnsiaW5wdXRfdG9rZW5zIjoxMzIsIm91dHB1dF90b2tlbnMiOjMzfX0=
+  recorded_at: Sat, 12 Oct 2024 09:13:54 GMT
+recorded_with: VCR 6.3.1

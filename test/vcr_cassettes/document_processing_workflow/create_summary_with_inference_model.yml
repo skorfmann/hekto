@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20240620","messages":[{"role":"user","content":"{\"due_date\"=\u003e\"2023-12-31\",
+        \"total_amount\"=\u003e1500.0, \"customer_name\"=\u003e\"Acme Corp\", \"invoice_number\"=\u003e\"INV-001\"}\n\nCreate
+        a brief, one-line summary of the document''s content for easier recall.\ne.g.,
+        Lunch at Trattoria in Berlin, May 1, 2024, 12:00 PM, 2 people, €20\n"}],"max_tokens":4096}'
+    headers:
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 12 Oct 2024 09:20:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '4000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '3999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-10-12T09:20:55Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-10-12T09:20:19Z'
+      Request-Id:
+      - req_015cWmr8uQgzmtGBRCbPLN7G
+      X-Cloud-Trace-Context:
+      - 592c7610f089f22a1d2f215d66770242
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8d1603636a07dcaa-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01NL5Hd6AYofKVwWqRUneBSK","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"text","text":"Invoice
+        INV-001 for Acme Corp, due 2023-12-31, total amount $1500.00"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":111,"output_tokens":31}}'
+  recorded_at: Sat, 12 Oct 2024 09:20:19 GMT
+recorded_with: VCR 6.3.1

@@ -17,6 +17,10 @@ one:
   name: MyString
   content: MyText
   metadata:
+    invoice_number: "INV-001"
+    total_amount: 1500.00
+    due_date: "2023-12-31"
+    customer_name: "Acme Corp"
   account: one
   owner: one
 
@@ -24,5 +28,8 @@ two:
   name: MyString
   content: MyText
   metadata:
+    invoice_number: "INV-002"
+    total_amount: 2750.50
+    due_date: "2024-01-15"
   account: two
   owner: two
