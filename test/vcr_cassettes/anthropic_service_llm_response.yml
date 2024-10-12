@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20240620","messages":[{"role":"user","content":"What''s
+        the meaning of life?"}],"max_tokens":4096}'
+    headers:
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 12 Oct 2024 07:46:01 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '4000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '3999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-10-12T07:46:55Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-10-12T07:46:01Z'
+      Request-Id:
+      - req_01E2HBA1WhgJcgYZaCqrQ238
+      X-Cloud-Trace-Context:
+      - 89c115ff264e8de5f958000ef4b31e6a
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8d1579343f2a9b70-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01M1dfoKWMiYNVC7V369QRPB","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"text","text":"The
+        meaning of life is a profound philosophical question that has been debated
+        by thinkers, religious leaders, and ordinary people for centuries. There''s
+        no single, universally accepted answer. Different people and cultures have
+        varying perspectives:\n\n1. Some believe the meaning of life is to seek happiness
+        and fulfillment.\n\n2. Others think it''s about serving a higher purpose or
+        deity.\n\n3. Many philosophers argue that life has no inherent meaning, and
+        we must create our own purpose.\n\n4. Some say it''s about leaving a positive
+        legacy or contributing to society.\n\n5. Others believe it''s about personal
+        growth and self-improvement.\n\n6. Scientific perspectives often focus on
+        biological imperatives like survival and reproduction.\n\n7. Some spiritual
+        traditions teach that the meaning of life is to transcend suffering and achieve
+        enlightenment.\n\nUltimately, the meaning of life is a deeply personal concept
+        that each individual must contemplate and define for themselves based on their
+        own experiences, beliefs, and values."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":14,"output_tokens":209}}'
+  recorded_at: Sat, 12 Oct 2024 07:46:01 GMT
+recorded_with: VCR 6.3.1

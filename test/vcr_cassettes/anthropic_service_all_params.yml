@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20240620","messages":[{"role":"user","content":"What''s
+        the meaning of life?"}],"max_tokens":4096}'
+    headers:
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 12 Oct 2024 07:43:08 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '4000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '3999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-10-12T07:43:55Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-10-12T07:43:08Z'
+      Request-Id:
+      - req_01MbPyQyj6gf9saGo51s6ZPU
+      X-Cloud-Trace-Context:
+      - ae5c0c9035f54837829564ed683b0b42
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8d1574f93894d3ad-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_011zcTZVaAi8mzgZgnUYpnEb","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"text","text":"The
+        meaning of life is a philosophical question that has been debated by thinkers,
+        religious leaders, and ordinary people for centuries. There''s no single,
+        universally accepted answer. Some possible perspectives include:\n\n1. To
+        seek happiness and contentment\n2. To love and be loved\n3. To learn and grow
+        as individuals\n4. To help others and make the world better\n5. To fulfill
+        a divine purpose (religious view)\n6. To create and appreciate beauty\n7.
+        To understand the universe and our place in it\n8. To reproduce and continue
+        the species\n9. To find personal fulfillment and self-actualization\n10. There
+        is no inherent meaning; we create our own purpose\n\nUltimately, the meaning
+        of life is subjective and can vary from person to person based on their beliefs,
+        experiences, and values. It''s up to each individual to determine what gives
+        their life meaning and purpose."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":14,"output_tokens":196}}'
+  recorded_at: Sat, 12 Oct 2024 07:43:08 GMT
+recorded_with: VCR 6.3.1
