@@ -14,7 +14,7 @@
 one:
   account: one
   user: one
-  name: user_registered
+  name: test_event
   payload:
     email: john@example.com
     registration_date: <%= Date.today.to_s %>

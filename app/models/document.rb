@@ -22,8 +22,6 @@ class Document < ApplicationRecord
 
   has_one_attached :file
 
-  has_many :transitions, class_name: 'DocumentTransition', autosave: false
-
   has_many :transaction_reconciliations
   has_many :bank_transactions, through: :transaction_reconciliations, source: :bank_transaction
 
@@ -47,23 +45,13 @@ class Document < ApplicationRecord
     where("(metadata->>'date')::date BETWEEN ? AND ?", start_date, end_date)
   }
 
-  after_update :run_document_summary_job, if: :metadata_changed?
-
-  # Initialize the state machine
-  def workflow
-    @workflow ||= DocumentProcessingWorkflow.new(self, transition_class: DocumentTransition,
-                                                       association_name: :transitions)
-  end
-
-  # Optionally delegate some methods
-  delegate :can_transition_to?,
-           :current_state, :history, :last_transition, :last_transition_to,
-           :transition_to!, :transition_to, :in_state?, to: :workflow
+  after_update :document_changed, if: :metadata_changed?
 
   private
 
-  def run_document_summary_job
-    DocumentSummaryJob.perform_later(id)
+  def document_changed
+    event = DurableFlow::Event.new(subject: self, name: :document_changed, account: account, user: owner)
+    DurableFlow::EventBus.publish(event)
   end
 
   def metadata_changed?

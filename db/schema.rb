@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_12_081936) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_12_125958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -204,7 +204,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_12_081936) do
     t.jsonb "payload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subject_type"
+    t.bigint "subject_id"
     t.index ["account_id"], name: "index_durable_flow_events_on_account_id"
+    t.index ["subject_type", "subject_id"], name: "index_durable_flow_events_on_subject"
     t.index ["user_id"], name: "index_durable_flow_events_on_user_id"
   end
 

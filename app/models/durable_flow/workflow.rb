@@ -1,6 +1,15 @@
 class DurableFlow::Workflow
 
   class << self
+    def subscriptions
+      @subscriptions ||= {}
+    end
+
+    def subscribe_to(event_name)
+      DurableFlow::EventBus.subscribe(event_name, self)
+      subscriptions[event_name] = true
+    end
+
     def run(event:, account:)
       workflow_instance = DurableFlow::WorkflowInstance.create!(
         account: account,

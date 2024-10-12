@@ -1,6 +1,8 @@
 class DocumentProcessingWorkflow < DurableFlow::Workflow
-  def execute(document_id)
-    document = Document.find(document_id)
+  subscribe_to :document_changed
+
+  def execute(event)
+    document = event.subject
 
     summary = step :create_summary do
       DocumentProcessingWorkflowPrompt.new.create_summary(document)

@@ -14,4 +14,5 @@ class DurableFlow::Event < ApplicationRecord
   belongs_to :account
   belongs_to :user, optional: true
   has_many :workflow_instances, class_name: "DurableFlow::WorkflowInstance"
+  belongs_to :subject, polymorphic: true, optional: true
 end
