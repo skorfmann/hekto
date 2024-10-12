@@ -21,5 +21,9 @@ module Inference
     def complete(prompt:, model:)
       raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
     end
+
+    def create_object(prompt:, model:, object_definition:)
+      raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+    end
   end
 end

@@ -1,5 +1,5 @@
 module Inference
-  class OpenAIService < AiService
+  class OpenaiService < AiService
     COSTS_PER_1K_TOKENS = {
       'gpt-3.5-turbo' => { input: 0.0015, output: 0.002 },
       'gpt-4' => { input: 0.03, output: 0.06 },

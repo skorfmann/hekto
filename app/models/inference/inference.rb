@@ -17,8 +17,9 @@
 #  subject_id                  :bigint
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
+#  status                      :integer
+#  object_definition           :text
 #
-# ... schema information ...
 module Inference
   class Inference < ApplicationRecord
     belongs_to :account
@@ -93,6 +94,36 @@ module Inference
       input_cost = (input_tokens.to_f / 1000) * cost_per_1000_input_tokens
       output_cost = (output_tokens.to_f / 1000) * cost_per_1000_output_tokens
       input_cost + output_cost
+    end
+
+    def self.create_object(account:, user:, prompt:, model:, provider:, object_definition:, subject: nil)
+      inference = create!(
+        account: account,
+        user: user,
+        prompt: prompt,
+        model: model,
+        provider: provider,
+        object_definition: object_definition,
+        subject: subject,
+        status: :inferencing
+      )
+
+      ai_service = AiService.for(provider)
+      result = ai_service.create_object(prompt: prompt, model: model, object_definition: object_definition)
+
+      inference.update(
+        response: result.object.to_json,
+        input_tokens: result.input_tokens,
+        output_tokens: result.output_tokens,
+        cost_per_1000_input_tokens: result.cost_per_1000_input_tokens,
+        cost_per_1000_output_tokens: result.cost_per_1000_output_tokens,
+        status: :completed
+      )
+
+      inference
+    rescue StandardError => e
+      inference.update(status: :failed)
+      raise e
     end
   end
 end

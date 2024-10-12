@@ -11,6 +11,7 @@
 #  output               :jsonb
 #  error                :jsonb
 #  status               :integer          default("pending")
+#  sleep_until          :datetime
 #  type                 :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null

@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20240620","system":"You are a helpful assistant
+        that extracts information from text and formats it according to the given
+        JSON:API object definition. Your response must be a single, valid JSON object
+        that strictly adheres to the given structure.","messages":[{"role":"user","content":"\n\u003cinstruction\u003e\nExtract
+        information from the given text and format it according to the provided JSON:API
+        object definition. Your response must be a single, valid JSON object that
+        strictly adheres to the given structure.\n\u003c/instruction\u003e\n\n\u003cobject_definition\u003e\n{\"data\":{\"type\":\"person\",\"attributes\":{\"name\":\"string\",\"age\":\"integer\",\"occupation\":\"string\"}}}\n\u003c/object_definition\u003e\n\n\u003ctext_to_extract\u003e\nJohn
+        Doe is a 35-year-old software engineer.\n\u003c/text_to_extract\u003e\n\n\u003coutput_format\u003e\nProvide
+        only the formatted JSON object, with no additional text or explanations.\n\u003c/output_format\u003e"},{"role":"assistant","content":"{"}],"max_tokens":4096}'
+    headers:
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 12 Oct 2024 08:08:49 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '4000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '3999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-10-12T08:08:55Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '400000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-10-12T08:08:49Z'
+      Request-Id:
+      - req_01LM5ZgCkcsmEcUDQPLm73aM
+      X-Cloud-Trace-Context:
+      - fa90694a3777fb6971c60de4494fe150
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8d159aa84f104dc6-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01PAJghoqj3hariD1M1EQcNd","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"text","text":"\n  \"data\":
+        {\n    \"type\": \"person\",\n    \"attributes\": {\n      \"name\": \"John
+        Doe\",\n      \"age\": 35,\n      \"occupation\": \"software engineer\"\n    }\n  }\n}"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":196,"output_tokens":58}}'
+  recorded_at: Sat, 12 Oct 2024 08:08:49 GMT
+recorded_with: VCR 6.3.1

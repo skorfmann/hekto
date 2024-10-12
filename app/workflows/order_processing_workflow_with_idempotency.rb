@@ -1,7 +1,4 @@
 class OrderProcessingWorkflowWithIdempotency < DurableFlow::Workflow
-  on_event :process_document
-
-
   def execute
     random_number = step :generate_random_number do
       rand(1000)

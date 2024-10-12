@@ -17,6 +17,8 @@
 #  subject_id                  :bigint
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
+#  status                      :integer
+#  object_definition           :text
 #
 
 # This model initially had no columns defined. If you add columns to the

@@ -1,5 +1,5 @@
 module Inference
-  class AIStream
+  class AiStream
     attr_reader :provider_stream
 
     def initialize(provider_stream)
