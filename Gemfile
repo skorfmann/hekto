@@ -16,7 +16,7 @@ gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.3"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails", "~> 1.0", ">= 1.0.2"
+gem "stimulus-rails", "~> 1.3"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", github: "excid3/jbuilder", branch: "fix-caching-with-api-controllers" # "~> 2.12"
 
