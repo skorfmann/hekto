@@ -1,5 +1,7 @@
 class DocumentProcessingWorkflow < DurableFlow::Workflow
-  subscribe_to :document_changed
+  subscribe_to :document_new
+
+  puts "DocumentProcessingWorkflow loaded"
 
   def execute(event)
     document = event.subject

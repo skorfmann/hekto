@@ -21,6 +21,8 @@ class Document < ApplicationRecord
   belongs_to :vendor, optional: true
 
   has_one_attached :file
+  # PDFs might be converted to images for processing in LLMs
+  has_many_attached :images
 
   has_many :transaction_reconciliations
   has_many :bank_transactions, through: :transaction_reconciliations, source: :bank_transaction
@@ -45,14 +47,7 @@ class Document < ApplicationRecord
     where("(metadata->>'date')::date BETWEEN ? AND ?", start_date, end_date)
   }
 
-  after_update :document_changed, if: :metadata_changed?
-
   private
-
-  def document_changed
-    event = DurableFlow::Event.new(subject: self, name: :document_changed, account: account, user: owner)
-    DurableFlow::EventBus.publish(event)
-  end
 
   def metadata_changed?
     saved_change_to_metadata?

@@ -16,6 +16,8 @@
 #  updated_at       :datetime         not null
 #
 class Address < ApplicationRecord
+  puts "Address loaded"
+
   belongs_to :addressable, polymorphic: true
 
   enum :address_type, [:billing, :shipping]

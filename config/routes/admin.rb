@@ -21,5 +21,17 @@ namespace :admin do
     resources :subscriptions
   end
 
+  namespace :durable_flow do
+    resources :workflow_instances
+    resources :step_executions
+    resources :events
+  end
+
+  namespace :inference do
+    resources :inferences
+  end
+
+  resources :documents
+
   root to: "dashboard#show"
 end

@@ -8,7 +8,7 @@ module DurableFlow
       end
 
       def publish(event)
-        workflows = subscriptions[event.name] || []
+        workflows = subscriptions[event.name.to_sym] || []
         if workflows.empty?
           Rails.logger.warn "No subscribers found for event: #{event.name}"
         else

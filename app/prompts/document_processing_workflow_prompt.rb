@@ -3,6 +3,13 @@ class DocumentProcessingWorkflowPrompt < Inference::Prompt
   provider 'anthropic'
 
   def create_summary(document)
-    render_text locals: { document: document }, account: document.account, user: document.owner
+    render_text locals: { document: document }, account: document.account, user: document.owner, subject: document
+  end
+
+  def extract_metadata(document)
+    render_json locals: { document: document, images: document.images},
+      account: document.account,
+      user: document.owner,
+      subject: document
   end
 end

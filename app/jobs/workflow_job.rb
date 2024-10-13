@@ -7,7 +7,7 @@ class WorkflowJob < ApplicationJob
     workflow = workflow_class.new(workflow_instance)
 
     catch(:pause_workflow) do
-      result = workflow.execute
+      result = workflow.execute(workflow.event)
       # If we reach here, the workflow completed without pausing
       persist_result(workflow_instance, result)
       return

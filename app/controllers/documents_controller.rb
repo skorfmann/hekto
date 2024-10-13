@@ -41,8 +41,14 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.save
         @document.file.attach(params[:document][:file]) if params[:document][:file].present?
-        # Enqueue background job for processing
-        DocumentProcessingJob.perform_later(@document.id)
+        DocumentProcessingWorkflow
+        event = DurableFlow::Event.new(
+          name: :document_new,
+          subject: @document,
+          account: @document.account,
+          user: @document.owner
+        )
+        DurableFlow::EventBus.publish(event)
 
         format.html { redirect_to @document, notice: 'Document was successfully uploaded and is being processed.' }
         format.json { render :show, status: :created, location: @document }
