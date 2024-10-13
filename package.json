@@ -34,5 +34,6 @@
   "scripts": {
     "build:css": "tailwindcss --postcss --minify -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
     "build": "node esbuild.config.mjs"
-  }
+  },
+  "packageManager": "yarn@1.22.21"
 }
