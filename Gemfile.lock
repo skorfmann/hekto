@@ -507,6 +507,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sentry-rails (5.21.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.21.0)
+    sentry-ruby (5.21.0)
+      bigdecimal
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     smart_properties (1.17.0)
     smarter_csv (1.12.1)
     solid_cable (3.0.2)
@@ -655,6 +661,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   ruby-oembed (~> 0.18.0)
   selenium-webdriver (>= 4.20.1)
+  sentry-rails
   smarter_csv (~> 1.12)
   solid_cable
   solid_cache
