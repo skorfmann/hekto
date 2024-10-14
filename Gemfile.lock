@@ -391,7 +391,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (6.0.0)
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     pundit (2.3.2)
       activesupport (>= 3.0.0)
@@ -652,7 +652,7 @@ DEPENDENCIES
   prefixed_ids (~> 1.2)
   pretender (~> 0.4)
   propshaft (~> 1.0)
-  puma (~> 6.0)
+  puma (~> 6.4)
   pundit (~> 2.1)
   rails (~> 8.0.0.beta1)
   receipts (~> 2.1)
