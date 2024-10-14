@@ -101,7 +101,7 @@ gem "open_exchange_rates", "~> 0.6.1"
 
 gem "statesman", "~> 12.1"
 
-gem "sqlite3", "~> 2.0", :group => :dev
+gem "sqlite3", "~> 2.1", :group => :dev
 
 gem "vcr", "~> 6.3"
 
