@@ -110,3 +110,5 @@ gem "httparty", "~> 0.22.0"
 gem "dockerfile-rails", ">= 1.6", :group => :development
 
 gem "stackprof", "~> 0.2.26"
+
+gem "aws-sdk-s3", "~> 1.167"
