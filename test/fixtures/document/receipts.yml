@@ -1,0 +1,34 @@
+one:
+  id: <%= ActiveRecord::FixtureSet.identify(:receipt_one) %>
+  name: Sample Receipt
+  content: Receipt details
+  metadata:
+    invoice_number: "REC-001"
+    total_amount: 125.50
+    date: "2023-06-15"
+    vendor: "ABC Store"
+    items:
+      - name: "Product A"
+        quantity: 2
+        unit_price: 45.00
+      - name: "Product B"
+        quantity: 1
+        unit_price: 35.50
+  account: one
+  owner: one
+
+two:
+  id: <%= ActiveRecord::FixtureSet.identify(:receipt_two) %>
+  name: Another Receipt
+  content: More receipt details
+  metadata:
+    invoice_number: "REC-002"
+    total_amount: 75.25
+    date: "2023-06-16"
+    vendor: "XYZ Shop"
+    items:
+      - name: "Service X"
+        quantity: 1
+        unit_price: 75.25
+  account: two
+  owner: two

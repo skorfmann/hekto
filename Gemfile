@@ -112,3 +112,9 @@ gem "dockerfile-rails", ">= 1.6", :group => :development
 gem "stackprof", "~> 0.2.26"
 
 gem "aws-sdk-s3", "~> 1.167"
+
+gem "dry-schema", "~> 1.13"
+
+gem "json-schema", "~> 5.0"
+
+gem "json_schemer", "~> 2.3"

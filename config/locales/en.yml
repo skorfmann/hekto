@@ -593,3 +593,26 @@ en:
         name: "Steve Jobs"
         email: "you@example.com"
         password: "password"
+
+  json_schemer:
+    errors:
+      'https://example.com/schema#/properties/abc/type': custom error for absolute keyword location
+      'https://example.com/schema':
+        '#/properties/abc/type': custom error for keyword location, nested under schema $id
+        'type': custom error for `type` keyword, nested under schema $id
+        '^': custom error for schema, nested under schema $id
+        '*': fallback error for schema and all keywords, nested under schema $id
+      '#/properties/abc/type': custom error for keyword location
+      'http://json-schema.org/draft-07/schema#':
+        'date': custom error for `type` keyword, nested under meta-schema $id ($schema)
+        '^': custom error for schema, nested under meta-schema $id
+        '*': fallback error for schema and all keywords, nested under meta-schema $id ($schema)
+      'date': custom error for `type` keyword
+      '^': custom error for schema
+      # variable interpolation (instance/instanceLocation/keywordLocation/absoluteKeywordLocation)
+      '*': |
+        fallback error for schema and all keywords
+        instance: %{instance}
+        instance location: %{instanceLocation}
+        keyword location: %{keywordLocation}
+        absolute keyword location: %{absoluteKeywordLocation}

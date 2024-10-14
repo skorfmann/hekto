@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "merchant": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "website": { "type": "string" },
+        "vatNumber": { "type": "string" },
+        "taxNumber": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "quantity": { "type": "number" },
+          "price": {
+            "type": "object",
+            "properties": {
+              "amount": { "type": "number" },
+              "currency": { "type": "string", "description": "ISO 4217 currency code" }
+            },
+            "required": ["amount", "currency"]
+          },
+          "taxRate": { "type": "number", "description": "VAT tax rate as a decimal (e.g., 0.20 for 20%)" },
+          "taxAmount": {
+            "type": "object",
+            "properties": {
+              "amount": { "type": "number" },
+              "currency": { "type": "string" }
+            },
+            "required": ["amount", "currency"]
+          }
+        },
+        "required": ["name", "quantity", "price", "taxRate", "taxAmount"]
+      }
+    },
+    "total": {
+      "type": "object",
+      "properties": {
+        "net": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": "number" },
+            "currency": { "type": "string" }
+          },
+          "required": ["amount", "currency"]
+        },
+        "tax": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rate": { "type": "number" },
+              "amount": {
+                "type": "object",
+                "properties": {
+                  "amount": { "type": "number" },
+                  "currency": { "type": "string" }
+                },
+                "required": ["amount", "currency"]
+              }
+            },
+            "required": ["rate", "amount"]
+          }
+        },
+        "gross": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": "number" },
+            "currency": { "type": "string" }
+          },
+          "required": ["amount", "currency"]
+        }
+      },
+      "required": ["net", "tax", "gross"]
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "method": { "type": "string" },
+        "amount": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": "number" },
+            "currency": { "type": "string" }
+          },
+          "required": ["amount", "currency"]
+        }
+      },
+      "required": ["method", "amount"]
+    },
+    "date": { "type": "string", "format": "date", "description": "ISO 8601 date format (YYYY-MM-DD)" },
+    "time": { "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$", "description": "Time in HH:MM:SS format" },
+    "receipt_number": { "type": "string" }
+  },
+  "required": ["merchant", "items", "total", "payment", "date"]
+}
+
