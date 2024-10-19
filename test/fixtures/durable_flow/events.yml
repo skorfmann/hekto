@@ -20,6 +20,7 @@ one:
   payload:
     email: john@example.com
     registration_date: <%= Date.today.to_s %>
+  subject: one (Document)
 
 two:
   account: two

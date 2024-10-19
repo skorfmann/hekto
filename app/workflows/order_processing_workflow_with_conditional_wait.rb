@@ -1,5 +1,5 @@
 class OrderProcessingWorkflowWithConditionalWait < DurableFlow::Workflow
-  def execute
+  def execute(event)
     rows = step :parse_csv do
       [{
         'Name' => 'John Doe',

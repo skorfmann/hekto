@@ -33,6 +33,9 @@ class Account < ApplicationRecord
   has_many :bank_accounts, dependent: :destroy
   has_many :bank_account_statements, dependent: :destroy
   has_many :transactions, dependent: :destroy
+  has_many :workflow_instances, dependent: :destroy, class_name: 'DurableFlow::WorkflowInstance'
+  has_many :step_executions, through: :workflow_instances, class_name: 'DurableFlow::StepExecution'
+  has_many :events, dependent: :destroy, class_name: 'DurableFlow::Event'
 
   scope :personal, -> { where(personal: true) }
   scope :team, -> { where(personal: false) }

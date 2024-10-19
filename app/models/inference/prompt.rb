@@ -35,8 +35,16 @@ module Inference
       schema_path = template_file_path('json.schema')
       context = OpenStruct.new(locals.merge(account: account, user: user))
 
-      rendered_prompt = JbuilderTemplate.new(context) do
-        eval(File.read(template_path))
+      rendered_prompt = Jbuilder.new do |json|
+        json.instance_eval do
+          # Make context methods available as local methods
+          context.methods(false).each do |method|
+            define_singleton_method(method) { context.send(method) }
+          end
+
+          # Evaluate the template in the context of the Jbuilder instance
+          eval(File.read(template_path))
+        end
       end.attributes!
 
       schema = JSON.parse(File.read(schema_path))

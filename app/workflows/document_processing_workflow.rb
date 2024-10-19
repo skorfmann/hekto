@@ -1,8 +1,6 @@
 class DocumentProcessingWorkflow < DurableFlow::Workflow
   subscribe_to :document_new
 
-  puts "DocumentProcessingWorkflow loaded"
-
   def execute(event)
     document = event.subject
 
@@ -47,7 +45,7 @@ class DocumentProcessingWorkflow < DurableFlow::Workflow
       temp_file.flush
 
       # Load the PDF using libvips at 2x scale
-      pdf = Vips::Image.new_from_file(temp_file.path, access: :sequential, scale: 2)
+      pdf = ::Vips::Image.new_from_file(temp_file.path, access: :sequential, scale: 2)
       n_pages = pdf.get('n-pages')
 
       n_pages.times do |page_number|

@@ -10,9 +10,9 @@ class EventBusTest < ActiveSupport::TestCase
   end
 
   class TestWorkflow < DurableFlow::Workflow
-    subscribe_to 'test_event'
+    subscribe_to :test_event
 
-    def execute
+    def execute(event)
       step :test_step do
         "executed"
       end

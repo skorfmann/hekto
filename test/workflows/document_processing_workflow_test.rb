@@ -11,6 +11,9 @@ class DocumentProcessingWorkflowTest < ActiveSupport::TestCase
 
   test "processes the workflow and returns normalized rows" do
     event = durable_flow_events(:one)
+    document = event.subject
+    document.file = active_storage_blobs(:invoice_pdf_blob)
+    document.save!
     account = accounts(:one)
 
     workflow = nil
@@ -18,7 +21,7 @@ class DocumentProcessingWorkflowTest < ActiveSupport::TestCase
       workflow = DocumentProcessingWorkflow.run(event: event, account: account)
     end
 
-    assert_instance_of WorkflowJob, workflow
+    assert_instance_of DurableFlow::WorkflowInstance, workflow
 
     assert_difference -> { DurableFlow::StepExecution.count } => 2 do
       perform_enqueued_jobs

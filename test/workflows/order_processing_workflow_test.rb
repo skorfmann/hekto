@@ -18,7 +18,7 @@ class OrderProcessingWorkflowTest < ActiveSupport::TestCase
       workflow = OrderProcessingWorkflow.run(event: event, account: account)
     end
 
-    assert_instance_of WorkflowJob, workflow
+    assert_instance_of DurableFlow::WorkflowInstance, workflow
 
     assert_difference -> { DurableFlow::StepExecution.count } => 2 do
       perform_enqueued_jobs

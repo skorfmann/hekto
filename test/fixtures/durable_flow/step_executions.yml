@@ -26,7 +26,6 @@ step_execution_one:
   output: { order_processed: true, total_amount: 150.00 }
   error:
   status: "completed"
-  type: "DurableFlow::ProcessOrderStep"
 
 step_execution_two:
   account: two
@@ -37,4 +36,3 @@ step_execution_two:
   output:
   error: { message: "Failed to send email", code: "EMAIL_001" }
   status: "failed"
-  type: "DurableFlow::SendEmailStep"

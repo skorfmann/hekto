@@ -718,6 +718,7 @@ DEPENDENCIES
   rqrcode (~> 2.1)
   rubocop-rails-omakase
   ruby-oembed (~> 0.18.0)
+  ruby-vips (~> 2.2)
   selenium-webdriver (>= 4.20.1)
   sentry-rails
   smarter_csv (~> 1.12)

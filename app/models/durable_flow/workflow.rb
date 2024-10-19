@@ -18,6 +18,7 @@ class DurableFlow::Workflow
         status: 'pending'
       )
       WorkflowJob.perform_later(workflow_instance.id)
+      workflow_instance
     end
   end
 

@@ -118,3 +118,5 @@ gem "dry-schema", "~> 1.13"
 gem "json-schema", "~> 5.0"
 
 gem "json_schemer", "~> 2.3"
+
+gem "ruby-vips", "~> 2.2"

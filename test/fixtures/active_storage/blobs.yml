@@ -1,0 +1,5 @@
+invoice_pdf_blob: <%= ActiveStorage::FixtureSet.blob(
+  filename: "invoice.pdf",
+  service_name: "test"
+) %>
+

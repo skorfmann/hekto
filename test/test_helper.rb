@@ -3,6 +3,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/mock"
 require "webmock/minitest"
+require_relative 'support/file_attachment_helper'
 
 # Uncomment to view full stack trace in tests
 # Rails.backtrace_cleaner.remove_silencers!
@@ -28,6 +29,8 @@ module ActiveSupport
     def json_response
       JSON.decode(response.body)
     end
+
+    include FileAttachmentHelper
   end
 end
 
